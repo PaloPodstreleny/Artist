@@ -10,5 +10,5 @@
 .externalNativeBuild
 
 
-app/src/main/java/com/artapp/podstreleny/palo/artist/ApiKey.class
-/src/main/java/com/artapp/podstreleny/palo/artist/ApiKey.class
+app/src/main/java/com/artapp/podstreleny/palo/artist/ApiKey.java
+/src/main/java/com/artapp/podstreleny/palo/artist/ApiKey.java
