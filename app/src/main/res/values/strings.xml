@@ -3,4 +3,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+
+    <string name="token_file_key">com.artapp.podstreleny.palo.artist.token_file_key</string>
+    <string name="token_entry_value">com.artapp.podstreleny.palo.artist.token_entry_value</string>
+    <string name="token_entry_date">com.artapp.podstreleny.palo.artist.token_entry_date</string>
+
+
 </resources>

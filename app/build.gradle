@@ -57,5 +57,9 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
 
 
+    //Test Howk
+    implementation 'com.wealdtech.hawk:hawk-core:1.2.0'
+
+
 
 }
