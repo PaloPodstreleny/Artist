@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Artist</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_art">Art</string>
+    <string name="title_shows">Shows</string>
+    <string name="title_settings">Settings</string>
 
 
     <string name="token_file_key">com.artapp.podstreleny.palo.artist.token_file_key</string>
