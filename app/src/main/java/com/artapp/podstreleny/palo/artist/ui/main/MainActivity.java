@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.ui.art.ArtFragment;
 import com.artapp.podstreleny.palo.artist.ui.settings.SettingsFragment;
+import com.artapp.podstreleny.palo.artist.ui.shows.ShowFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,18 +28,17 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_art:
-                    if(mFragmentManager == null){
-                        mFragmentManager = getSupportFragmentManager();
-                    }
+                    setFragmentManager();
                     selectedItem = R.id.navigation_art;
                     mFragmentManager.beginTransaction().replace(R.id.fragment_fl, new ArtFragment()).commit();
                     return true;
                 case R.id.navigation_shows:
+                    setFragmentManager();
+                    selectedItem = R.id.navigation_shows;
+                    mFragmentManager.beginTransaction().replace(R.id.fragment_fl,new ShowFragment()).commit();
                     return true;
                 case R.id.navigation_settings:
-                    if(mFragmentManager == null){
-                        mFragmentManager = getSupportFragmentManager();
-                    }
+                    setFragmentManager();
                     selectedItem = R.id.navigation_settings;
                     mFragmentManager.beginTransaction().replace(R.id.fragment_fl,new SettingsFragment()).commit();
                     return true;
@@ -64,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
         navigation.setSelectedItemId(selectedItem);
 
+    }
+
+    private void setFragmentManager(){
+        if(mFragmentManager == null){
+            mFragmentManager = getSupportFragmentManager();
+        }
     }
 
 
