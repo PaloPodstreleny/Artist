@@ -11,6 +11,6 @@ interface IToken {
 
     @POST("tokens/xapp_token")
     @FormUrlEncoded
-    Call<ArtysToken> getData(@Field("client_id") String clientId, @Field("client_secret") String clientSecret);
+    Call<ArtysToken> getToken(@Field("client_id") String clientId, @Field("client_secret") String clientSecret);
 
 }

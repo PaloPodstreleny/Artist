@@ -9,6 +9,8 @@ import java.util.concurrent.Executors;
 
 public class AppExecutor {
 
+    private static AppExecutor INSTANCE;
+
     private final Executor mDiskIO;
 
     private final Executor mNetworkIO;
@@ -21,7 +23,18 @@ public class AppExecutor {
         this.mMainThread = mainThread;
     }
 
-    public AppExecutor() {
+    public static AppExecutor getInstance(){
+        if(INSTANCE == null){
+            synchronized (AppExecutor.class) {
+                INSTANCE = new AppExecutor();
+            }
+        }
+        return INSTANCE;
+    }
+
+
+
+    private AppExecutor() {
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
                 new MainThreadExecutor());
     }

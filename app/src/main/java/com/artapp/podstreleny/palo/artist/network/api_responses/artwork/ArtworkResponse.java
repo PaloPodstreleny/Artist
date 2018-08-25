@@ -18,4 +18,12 @@ public class ArtworkResponse {
     public void setLinks(ImportantLink links) {
         this.links = links;
     }
+
+    public ArtworkData getData() {
+        return data;
+    }
+
+    public void setData(ArtworkData data) {
+        this.data = data;
+    }
 }
