@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.ui.shows;
+package com.artapp.podstreleny.palo.artist.ui.art.artists;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,19 +10,12 @@ import android.view.ViewGroup;
 
 import com.artapp.podstreleny.palo.artist.R;
 
-public class ShowFragment extends Fragment {
-
-
+public class ArtistsFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.show_fragment,container,false);
+        final View view = inflater.inflate(R.layout.artists_framgnet,container,false);
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
     }
 }

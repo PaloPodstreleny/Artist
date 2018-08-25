@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
             selectedItem = savedInstanceState.getInt(ITEM_ID);
         } else {
             selectedItem = R.id.navigation_art;
+            navigation.setSelectedItemId(selectedItem);
         }
 
-        navigation.setSelectedItemId(selectedItem);
 
     }
 
