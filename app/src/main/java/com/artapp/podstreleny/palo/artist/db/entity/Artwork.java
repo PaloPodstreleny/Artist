@@ -5,6 +5,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import com.artapp.podstreleny.palo.artist.network.api_responses.ImportantLink;
 import com.google.gson.annotations.SerializedName;
@@ -14,6 +15,7 @@ import com.google.gson.annotations.SerializedName;
 public class Artwork {
 
     @PrimaryKey
+    @NonNull
     private String id;
 
     @ColumnInfo(name = "artwork_title")
@@ -32,7 +34,7 @@ public class Artwork {
     private String website;
 
     @ColumnInfo(name = "artwork_rights")
-    @SerializedName("artwork_image_rights")
+    @SerializedName("image_rights")
     private String imageRights;
 
     @ColumnInfo(name = "can_share")
@@ -45,6 +47,7 @@ public class Artwork {
 
     /* Links */
     @Ignore
+    @SerializedName("_links")
     private ImportantLink links;
 
 

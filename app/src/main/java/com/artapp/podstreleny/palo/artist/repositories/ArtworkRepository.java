@@ -2,21 +2,23 @@ package com.artapp.podstreleny.palo.artist.repositories;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.artapp.podstreleny.palo.artist.AppExecutor;
+import com.artapp.podstreleny.palo.artist.TokenFetcher;
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
+import com.artapp.podstreleny.palo.artist.network.IToken;
 import com.artapp.podstreleny.palo.artist.network.NetworkBoundResource;
 import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkResponse;
 import com.artapp.podstreleny.palo.artist.network.responses.ApiResponse;
 import com.artapp.podstreleny.palo.artist.network.retrofit.RetrofitProvider;
+import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 
 import java.util.List;
 
@@ -24,15 +26,17 @@ public class ArtworkRepository {
 
     private static ArtworkRepository INSTANCE;
     private static final String TAG = ArtworkRepository.class.getSimpleName();
+    private final IToken mTokenEndpoint;
     private AppExecutor appExecutor;
     private ArtworkDao mArtworkDao;
     private ArtsyEndpoint mEndpoint;
     private String nextFetch;
 
-    private ArtworkRepository( AppExecutor appExecutor, ArtworkDao dao, ArtsyEndpoint endpoint){
+    private ArtworkRepository(AppExecutor appExecutor, ArtworkDao dao, ArtsyEndpoint endpoint, IToken tokenEndpoint){
         this.appExecutor = appExecutor;
         this.mArtworkDao = dao;
         this.mEndpoint = endpoint;
+        this.mTokenEndpoint = tokenEndpoint;
     }
 
     public static ArtworkRepository getInstance(Application application){
@@ -41,11 +45,16 @@ public class ArtworkRepository {
                 INSTANCE = new ArtworkRepository(
                         AppExecutor.getInstance(),
                         ArtsyDatabase.getDatabaseInstance(application).getArtworkDao(),
-                        RetrofitProvider.getService(ArtsyEndpoint.class)
+                        RetrofitProvider.getService(ArtsyEndpoint.class),
+                        RetrofitProvider.getService(IToken.class)
                 );
             }
         }
         return INSTANCE;
+    }
+
+    public LiveData<Resource<ArtysToken>> fetchToken(){
+        return new TokenFetcher(mTokenEndpoint,appExecutor).asLiveData();
     }
 
     public LiveData<Resource<List<Artwork>>> getArtworks(final String token){
@@ -57,7 +66,10 @@ public class ArtworkRepository {
                 nextFetch = item.getLinks().getNext().getHref();
                 for(int x = 0; x < artworks.size(); x++){
                     final Artwork artwork = artworks.get(x);
-                    artwork.setThumbnail(item.getData().getArtworks().get(x).getLinks().getThumbnail().getHref());
+                    final String imageURL = item.getData().getArtworks().get(x).getLinks().getThumbnail().getHref();
+                    if(imageURL != null) {
+                        artwork.setThumbnail(item.getData().getArtworks().get(x).getLinks().getThumbnail().getHref());
+                    }
                 }
 
                 mArtworkDao.insertAll(artworks);
@@ -86,8 +98,6 @@ public class ArtworkRepository {
             }
         }.getAsLiveData();
     }
-
-
 
 
 }

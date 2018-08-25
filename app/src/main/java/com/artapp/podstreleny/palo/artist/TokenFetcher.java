@@ -6,7 +6,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
 
-import com.artapp.podstreleny.palo.artist.network.ArtsyTokenEndpoint;
+import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
+import com.artapp.podstreleny.palo.artist.network.IToken;
 import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.responses.ApiErrorResponse;
 import com.artapp.podstreleny.palo.artist.network.responses.ApiResponse;
@@ -18,14 +19,14 @@ import java.io.IOException;
 
 import retrofit2.Response;
 
-public  class SomeFancyClass {
+public  class TokenFetcher {
 
 
     private final MediatorLiveData<Resource<ArtysToken>> result = new MediatorLiveData<>();
     private final ArtysToken emptyToken = null;
     final MutableLiveData<Resource<ArtysToken>> data = new MutableLiveData<>();
 
-    public SomeFancyClass(final ArtsyTokenEndpoint tokenEndpoint,AppExecutor appExecutor){
+    public TokenFetcher(IToken tokenEndpoint, AppExecutor appExecutor){
         fetchToken(appExecutor,tokenEndpoint);
         result.addSource(data, new Observer<Resource<ArtysToken>>() {
             @Override
@@ -34,16 +35,14 @@ public  class SomeFancyClass {
                 result.setValue(tokenResource);
             }
         });
-
     }
 
-    private void fetchToken(AppExecutor appExecutor, final ArtsyTokenEndpoint tokenEndpoint){
+    private void fetchToken(AppExecutor appExecutor, final IToken tokenEndpoint){
         appExecutor.networkIO().execute(new Runnable() {
             @Override
             public void run() {
-                data.postValue(Resource.loading(emptyToken));
                 try {
-                    Response<ArtysToken> response = tokenEndpoint.getData(ApiKey.CLIENT_ID, ApiKey.CLIENT_SECRET).execute();
+                    Response<ArtysToken> response = tokenEndpoint.getToken(ApiKey.CLIENT_ID, ApiKey.CLIENT_SECRET).execute();
                     ApiResponse<ArtysToken> apiResponse = new ApiResponse<ArtysToken>().create(response);
                     if (apiResponse instanceof ApiSuccessResponse) {
                         final ApiSuccessResponse<ArtysToken> successResponse = (ApiSuccessResponse<ArtysToken>) apiResponse;
