@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
-public interface ArtsyEndpoint {
+public interface ArtsyEndpoint  {
 
     @POST("https://api.artsy.net/api/tokens/xapp_token")
     @FormUrlEncoded
