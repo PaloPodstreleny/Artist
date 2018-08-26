@@ -5,6 +5,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 import com.artapp.podstreleny.palo.artist.network.api_responses.ImportantLink;
@@ -12,9 +14,13 @@ import com.google.gson.annotations.SerializedName;
 
 
 @Entity(tableName = "artworks")
-public class Artwork {
+public class Artwork implements Parcelable{
 
-    private static final int MINIMUM_TITLE_SIZE = 2;
+    private static final int MINIMUN_LENGTH = 3;
+
+    public Artwork(){
+
+    }
 
     @PrimaryKey
     @NonNull
@@ -55,6 +61,32 @@ public class Artwork {
     @SerializedName("_links")
     private ImportantLink links;
 
+
+    @Ignore
+    protected Artwork(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        category = in.readString();
+        date = in.readString();
+        published = in.readByte() != 0;
+        website = in.readString();
+        imageRights = in.readString();
+        share = in.readByte() != 0;
+        thumbnail = in.readString();
+        nextPage = in.readString();
+    }
+
+    public static final Creator<Artwork> CREATOR = new Creator<Artwork>() {
+        @Override
+        public Artwork createFromParcel(Parcel in) {
+            return new Artwork(in);
+        }
+
+        @Override
+        public Artwork[] newArray(int size) {
+            return new Artwork[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -147,7 +179,52 @@ public class Artwork {
     }
 
     @Ignore
+    public boolean isValueAvailable(String value){
+        return (value.length() > MINIMUN_LENGTH);
+    }
+
+    @Ignore
     public boolean hasTitle(){
-        return (getTitle().length() > MINIMUM_TITLE_SIZE);
+        return (getTitle().length() > MINIMUN_LENGTH);
+    }
+
+    @Ignore
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Ignore
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(category);
+        dest.writeString(date);
+        dest.writeByte((byte) (published ? 1 : 0));
+        dest.writeString(website);
+        dest.writeString(imageRights);
+        dest.writeByte((byte) (share ? 1 : 0));
+        dest.writeString(thumbnail);
+        dest.writeString(nextPage);
+    }
+
+    @Ignore
+    public boolean hasCategory() {
+        return (getCategory().length() > MINIMUN_LENGTH);
+    }
+
+    @Ignore
+    public boolean hasDate() {
+        return (getDate().length() > MINIMUN_LENGTH);
+    }
+
+    @Ignore
+    public boolean hasWebsite() {
+        return (getWebsite().length() > MINIMUN_LENGTH);
+    }
+
+    public boolean hasRights() {
+        return (getImageRights().length() > MINIMUN_LENGTH);
     }
 }

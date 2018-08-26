@@ -19,4 +19,7 @@ public interface ArtworkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Artwork> data);
 
+
+
+
 }

@@ -35,6 +35,7 @@ dependencies {
 
     //ROOM
     implementation "android.arch.persistence.room:runtime:$room_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
     //ViewModel LiveData
@@ -45,8 +46,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     //Glide
-    implementation "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
 
     //Butterknife
     implementation "com.jakewharton:butterknife:$butter_knife_version"
@@ -60,10 +61,8 @@ dependencies {
     //Pagin library
     implementation "android.arch.paging:runtime:$paging_version"
 
-
     //Test Howk
     implementation 'com.wealdtech.hawk:hawk-core:1.2.0'
-
 
 
 }

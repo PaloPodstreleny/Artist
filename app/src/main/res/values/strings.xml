@@ -18,6 +18,7 @@
     <string name="error_no_internet_connection">No internet connection!</string>
     <string name="error_unauthorized_connection">You are unauthorized to use this app!</string>
     <string name="button_refetch">Refetch</string>
+    <string name="transition_photo_detail_main">transition_photo_detail</string>
 
 
 </resources>
