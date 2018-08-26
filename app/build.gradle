@@ -57,6 +57,9 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
 
+    //Pagin library
+    implementation "android.arch.paging:runtime:$paging_version"
+
 
     //Test Howk
     implementation 'com.wealdtech.hawk:hawk-core:1.2.0'

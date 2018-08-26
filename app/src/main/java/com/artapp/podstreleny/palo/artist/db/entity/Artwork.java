@@ -14,6 +14,8 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "artworks")
 public class Artwork {
 
+    private static final int MINIMUM_TITLE_SIZE = 2;
+
     @PrimaryKey
     @NonNull
     private String id;
@@ -43,6 +45,9 @@ public class Artwork {
 
     @ColumnInfo(name = "artwork_thumbnail")
     private String thumbnail;
+
+    @ColumnInfo(name = "next_page")
+    private String nextPage;
 
 
     /* Links */
@@ -131,5 +136,18 @@ public class Artwork {
     @Ignore
     public void setLinks(ImportantLink links) {
         this.links = links;
+    }
+
+    public String getNextPage() {
+        return nextPage;
+    }
+
+    public void setNextPage(String nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    @Ignore
+    public boolean hasTitle(){
+        return (getTitle().length() > MINIMUM_TITLE_SIZE);
     }
 }

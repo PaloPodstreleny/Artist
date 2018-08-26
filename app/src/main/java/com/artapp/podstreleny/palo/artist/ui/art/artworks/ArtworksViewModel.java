@@ -6,13 +6,13 @@ import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
+import android.arch.paging.PagedList;
 
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 import com.artapp.podstreleny.palo.artist.network.Resource;
+import com.artapp.podstreleny.palo.artist.network.Status;
 import com.artapp.podstreleny.palo.artist.repositories.ArtworkRepository;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
-
-import java.util.List;
 
 public class ArtworksViewModel extends AndroidViewModel {
 
@@ -27,10 +27,17 @@ public class ArtworksViewModel extends AndroidViewModel {
     });
 
     private MutableLiveData<String> tokenChanged = new MutableLiveData<>();
-    private LiveData<Resource<List<Artwork>>> artworks = Transformations.switchMap(tokenChanged, new Function<String, LiveData<Resource<List<Artwork>>>>() {
+    private LiveData<PagedList<Artwork>> artworks = Transformations.switchMap(tokenChanged, new Function<String, LiveData<PagedList<Artwork>>>() {
         @Override
-        public LiveData<Resource<List<Artwork>>> apply(String input) {
+        public LiveData<PagedList<Artwork>> apply(String input) {
             return mRepository.getArtworks(input);
+        }
+    });
+
+    private LiveData<Status> status = Transformations.switchMap(tokenChanged, new Function<String, LiveData<Status>>() {
+        @Override
+        public LiveData<Status> apply(String input) {
+            return mRepository.getActualStatus();
         }
     });
 
@@ -38,13 +45,15 @@ public class ArtworksViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public LiveData<Resource<List<Artwork>>> getArtworks(){
+    public LiveData<PagedList<Artwork>> getArtworks() {
         return artworks;
     }
 
     public LiveData<Resource<ArtysToken>> getToken() {
         return token;
     }
+
+    public LiveData<Status> getStatus(){return status;}
 
     public void fetchToken(){
         final Boolean value = shouldFetchToken.getValue();

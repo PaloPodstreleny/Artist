@@ -25,6 +25,7 @@ buildscript {
          junit_version = "4.12"
          runner_version = "1.0.2"
          espresso_version = "3.0.2"
+         paging_version = "1.0.0"
     }
 }
 
