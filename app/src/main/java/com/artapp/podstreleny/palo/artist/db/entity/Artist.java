@@ -191,4 +191,36 @@ public class Artist implements Parcelable{
         dest.writeString(nationality);
         dest.writeString(thumbnail);
     }
+
+    public boolean hasGender() {
+        return (getGender() != null && getGender().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasBiography() {
+        return (getBiography() != null && getBiography().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasBirthday() {
+        return (getBirthday() != null && getBirthday().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasDeathDay() {
+        return (getDeathday() != null && getDeathday().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasHometown() {
+        return (getHometown() != null && getHometown().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasLocation() {
+        return (getLocation() != null && getLocation().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasNationality() {
+        return (getNationality() != null && getNationality().length() > MINIMAL_LENGTH);
+    }
+
+    public boolean hasThumbnail() {
+        return (getThumbnail() != null && getThumbnail().length() > MINIMAL_LENGTH);
+    }
 }

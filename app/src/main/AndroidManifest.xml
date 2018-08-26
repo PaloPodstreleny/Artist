@@ -20,15 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.art.artworks.detail.ArtworkDetail"
-            android:parentActivityName=".ui.main.MainActivity"
-            >
-
+        <activity
+            android:name=".ui.art.artworks.detail.ArtworkDetail"
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
-
         </activity>
+        <activity android:name=".ui.art.artists.detail.ArtistDetail"></activity>
     </application>
 
 </manifest>

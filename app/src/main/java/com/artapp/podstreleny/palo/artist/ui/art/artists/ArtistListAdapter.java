@@ -1,7 +1,11 @@
 package com.artapp.podstreleny.palo.artist.ui.art.artists;
 
 
+import android.app.ActivityOptions;
 import android.arch.paging.PagedListAdapter;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +21,8 @@ import android.widget.TextView;
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Artist;
+import com.artapp.podstreleny.palo.artist.ui.art.artists.detail.ArtistDetail;
+import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import butterknife.BindView;
@@ -92,7 +98,18 @@ public class ArtistListAdapter extends PagedListAdapter<Artist,ArtistListAdapter
 
         @Override
         public void onClick(View v) {
-            //TODO implement
+            final Intent intent = new Intent(context, ArtistDetail.class);
+            intent.putExtra(ArtistDetail.ARTIST_DETAIL,getItem(getAdapterPosition()));
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                final Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
+                        context,
+                        mImageView,
+                        mImageView.getTransitionName()).toBundle();
+                context.startActivity(intent,bundle);
+            }else {
+
+                context.startActivity(intent);
+            }
         }
     }
 
