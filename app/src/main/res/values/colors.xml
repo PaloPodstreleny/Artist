@@ -7,4 +7,6 @@
 
     <color name="colorBlackPlaceholder">#000</color>
     <color name="colorGreyPlaceholder">#2e2e2e</color>
+    <color name="transparentBlack">#cc000000</color>
+    <color name="transparentLessBlack">#ee000000</color>
 </resources>
