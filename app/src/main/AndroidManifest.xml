@@ -27,7 +27,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />
         </activity>
-        <activity android:name=".ui.art.artists.detail.ArtistDetail"></activity>
+        <activity android:name=".ui.art.artists.detail.ArtistDetail" />
+        <activity android:name=".ui.art.genes.detail.GeneDetail" />
+        <activity android:name=".ui.shows.detail.ShowDetail"></activity>
     </application>
 
 </manifest>

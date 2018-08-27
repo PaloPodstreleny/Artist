@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.repositories.genes;
+package com.artapp.podstreleny.palo.artist.repositories.shows;
 
 import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
@@ -6,33 +6,34 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import com.artapp.podstreleny.palo.artist.AppExecutor;
-import com.artapp.podstreleny.palo.artist.db.daos.GeneDao;
+import com.artapp.podstreleny.palo.artist.db.daos.ShowDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Gene;
+import com.artapp.podstreleny.palo.artist.db.entity.Show;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
 import com.artapp.podstreleny.palo.artist.network.NetworkResource;
 import com.artapp.podstreleny.palo.artist.network.api_responses.ImportantLink;
 import com.artapp.podstreleny.palo.artist.network.api_responses.Link;
-import com.artapp.podstreleny.palo.artist.network.api_responses.genes.GeneData;
-import com.artapp.podstreleny.palo.artist.network.api_responses.genes.GeneResponse;
+import com.artapp.podstreleny.palo.artist.network.api_responses.shows.ShowData;
+import com.artapp.podstreleny.palo.artist.network.api_responses.shows.ShowResponse;
 
 import java.util.List;
 
 import retrofit2.Call;
 
-class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
+class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
 
-    private static final String TAG = GeneRepository.class.getSimpleName();
+    private static final String TAG = ShowBoundryCallback.class.getSimpleName();
     private static final int PREFETCH_SIZE = 50;
     private AppExecutor executor;
     private NetworkCallback callback;
     private ArtsyEndpoint endpoint;
     private String token;
-    private GeneDao dao;
+    private ShowDao dao;
 
     private boolean isLoaded;
 
-    public GeneBoundaryCallback(String token, GeneDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback) {
+    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback) {
         this.executor = executor;
         this.endpoint = endpoint;
         this.token = token;
@@ -44,7 +45,7 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
     public void onZeroItemsLoaded() {
         if(isLoaded) return;
         isLoaded = true;
-        new NetworkResource<GeneResponse>(executor,callback,true){
+        new NetworkResource<ShowResponse>(executor,callback,true){
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
@@ -53,12 +54,12 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
 
             @NonNull
             @Override
-            protected Call<GeneResponse> createCall() {
-                return endpoint.getGenes(token,PREFETCH_SIZE);
+            protected Call<ShowResponse> createCall() {
+                return endpoint.getShows(token,PREFETCH_SIZE);
             }
 
             @Override
-            protected void saveCallResult(@NonNull GeneResponse item) {
+            protected void saveCallResult(@NonNull ShowResponse item) {
                 isLoaded = false;
                 saveGeneData(item);
 
@@ -68,10 +69,10 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
     }
 
     @Override
-    public void onItemAtEndLoaded(@NonNull final Gene itemAtEnd) {
+    public void onItemAtEndLoaded(@NonNull final Show itemAtEnd) {
         if(isLoaded) return;
         isLoaded = true;
-        new NetworkResource<GeneResponse>(executor,callback,false){
+        new NetworkResource<ShowResponse>(executor,callback,false){
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
@@ -80,12 +81,12 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
 
             @NonNull
             @Override
-            protected Call<GeneResponse> createCall() {
-                return endpoint.getNextGenePage(itemAtEnd.getNextPage(),token);
+            protected Call<ShowResponse> createCall() {
+                return endpoint.getNextShow(itemAtEnd.getNextPage(),token);
             }
 
             @Override
-            protected void saveCallResult(@NonNull GeneResponse item) {
+            protected void saveCallResult(@NonNull ShowResponse item) {
                 isLoaded = false;
                 saveGeneData(item);
             }
@@ -93,25 +94,25 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
     }
 
     @WorkerThread
-    private void saveGeneData(@NonNull GeneResponse bodyResponse) {
-        final GeneData data = bodyResponse.getData();
+    private void saveGeneData(@NonNull ShowResponse bodyResponse) {
+        final ShowData data = bodyResponse.getData();
         final ImportantLink links = bodyResponse.getLinks();
 
         if (data != null && links != null) {
-            final List<Gene> genes = bodyResponse.getData().getGenes();
-            if (genes != null) {
+            final List<Show> shows = bodyResponse.getData().getShows();
+            if (shows != null) {
                 final String nextFetch = bodyResponse.getLinks().getNext().getHref();
-                for (int x = 0; x < genes.size(); x++) {
-                    final Gene gene = genes.get(x);
-                    final Link imageURL = genes.get(x).getLinks().getThumbnail();
+                for (int x = 0; x < shows.size(); x++) {
+                    final Show show = shows.get(x);
+                    final Link imageURL = shows.get(x).getLinks().getThumbnail();
                     if (imageURL != null) {
-                        gene.setThumbnail(imageURL.getHref());
+                        show.setThumbnail(imageURL.getHref());
                     }
                     if(nextFetch != null) {
-                        gene.setNextPage(nextFetch);
+                        show.setNextPage(nextFetch);
                     }
                 }
-                dao.insertAll(genes);
+                dao.insertAll(shows);
             }
 
         }

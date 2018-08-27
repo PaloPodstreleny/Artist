@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.ui.art.genes;
+package com.artapp.podstreleny.palo.artist.ui.shows;
 
 import android.app.ActivityOptions;
 import android.arch.paging.PagedListAdapter;
@@ -20,28 +20,30 @@ import android.widget.TextView;
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Gene;
+import com.artapp.podstreleny.palo.artist.db.entity.Show;
 import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;
 import com.artapp.podstreleny.palo.artist.ui.art.genes.detail.GeneDetail;
+import com.artapp.podstreleny.palo.artist.ui.shows.detail.ShowDetail;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class GeneListAdapter extends PagedListAdapter<Gene, GeneListAdapter.GeneViewHolder> {
+public class ShowListAdapter extends PagedListAdapter<Show, ShowListAdapter.ShowViewHolder> {
 
     private final FragmentActivity context;
     private final Fragment fragment;
 
-    public GeneListAdapter(Fragment fragment, FragmentActivity context) {
-        super(new DiffUtil.ItemCallback<Gene>() {
+    public ShowListAdapter(Fragment fragment, FragmentActivity context) {
+        super(new DiffUtil.ItemCallback<Show>() {
             @Override
-            public boolean areItemsTheSame(Gene oldItem, Gene newItem) {
+            public boolean areItemsTheSame(Show oldItem, Show newItem) {
                 return oldItem.getId().equals(newItem.getId());
             }
 
             @Override
-            public boolean areContentsTheSame(Gene oldItem, Gene newItem) {
+            public boolean areContentsTheSame(Show oldItem, Show newItem) {
                 return oldItem.getName().equals(newItem.getName());
             }
         });
@@ -52,17 +54,17 @@ public class GeneListAdapter extends PagedListAdapter<Gene, GeneListAdapter.Gene
 
     @NonNull
     @Override
-    public GeneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ShowViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.artwork_list_item, parent, false);
-        return new GeneViewHolder(view);
+        return new ShowViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GeneViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ShowViewHolder holder, int position) {
         holder.bind(position);
     }
 
-    public class GeneViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ShowViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.parent_layout)
         ConstraintLayout mParent;
@@ -73,7 +75,7 @@ public class GeneListAdapter extends PagedListAdapter<Gene, GeneListAdapter.Gene
         @BindView(R.id.artwork_image)
         ImageView mImageView;
 
-        public GeneViewHolder(View view) {
+        public ShowViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
             mParent.setOnClickListener(this);
@@ -81,13 +83,13 @@ public class GeneListAdapter extends PagedListAdapter<Gene, GeneListAdapter.Gene
 
         public void bind(int position) {
             //Can be nullable
-            final Gene gene = getItem(position);
-            if (gene != null) {
-                if (gene.getName() != null && gene.hasName()) {
-                    mNameTV.setText(gene.getName());
+            final Show show = getItem(position);
+            if (show != null) {
+                if (show.hasItemTitle()) {
+                    mNameTV.setText(show.getItemTitle());
                 }
                 GlideApp.with(fragment)
-                        .load(gene.getThumbnail())
+                        .load(show.getItemThumbnail())
                         .centerCrop()
                         .placeholder(R.drawable.placeholder)
                         .fallback(R.drawable.placeholder)
@@ -98,8 +100,8 @@ public class GeneListAdapter extends PagedListAdapter<Gene, GeneListAdapter.Gene
 
         @Override
         public void onClick(View v) {
-            final Intent intent = new Intent(context, GeneDetail.class);
-            intent.putExtra(GeneDetail.GENE_DETAIL,getItem(getAdapterPosition()));
+            final Intent intent = new Intent(context, ShowDetail.class);
+            intent.putExtra(ShowDetail.SHOW_DETAIL,getItem(getAdapterPosition()));
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 final Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
                         context,

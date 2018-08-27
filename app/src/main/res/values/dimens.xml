@@ -7,4 +7,5 @@
     <dimen name="list_item_margin">4dp</dimen>
     <dimen name="progress_bar_margin_top">48dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="list_layout_padding">4dp</dimen>
 </resources>

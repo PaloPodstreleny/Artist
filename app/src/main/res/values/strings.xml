@@ -20,6 +20,8 @@
     <string name="button_refetch">Refetch</string>
     <string name="transition_photo_detail_main">transition_photo_detail</string>
     <string name="transition_photo_detail_artist">transition_photo_detail_artist</string>
+    <string name="shows_title">Shows</string>
+    <string name="detail_show_title">Show detail</string>
 
 
 </resources>

@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/colorGreyPlaceholder</item>
+    </style>
+
+
+
 </resources>

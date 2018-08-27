@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.art.artworks.detail.ArtworkDetail">
+
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/toolbar_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/show_thumbnail_iv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:transitionName="@string/transition_photo_detail_main"
+            android:background="@color/colorGreyPlaceholder"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
+
+
+        <TextView
+            android:id="@+id/show_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_thumbnail_iv" />
+
+        <TextView
+            android:id="@+id/show_status_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/show_name_tv" />
+
+
+        <TextView
+            android:id="@+id/show_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_status_tv" />
+
+        <TextView
+            android:id="@+id/show_start_at_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_description_tv" />
+        <TextView
+            android:id="@+id/show_end_at_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_start_at_tv" />
+        <TextView
+            android:id="@+id/show_press_release_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_end_at_tv" />
+        <TextView
+            android:id="@+id/show_solo_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_press_release_tv" />
+        <TextView
+            android:id="@+id/show_group_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_solo_tv" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

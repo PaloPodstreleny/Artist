@@ -134,4 +134,16 @@ public class Gene implements Parcelable{
     public boolean hasName() {
         return (getName() != null && getName().length() > MINIMUM_SIZE);
     }
+
+    public boolean hasDisplayName() {
+        return (getDisplayName() != null && getDisplayName().length() > MINIMUM_SIZE);
+    }
+
+    public boolean hasDescription() {
+        return (getDescription() != null && getDescription().length() > MINIMUM_SIZE);
+    }
+
+    public boolean hasThumbnail() {
+        return (getThumbnail() != null && getThumbnail().length() > MINIMUM_SIZE);
+    }
 }
