@@ -6,38 +6,21 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 
-import com.artapp.podstreleny.palo.artist.GlideApp;
-import com.artapp.podstreleny.palo.artist.GlideRequest;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
 
-public class NotificationUtil implements OnBitmapLoaded {
+public class NotificationUtil {
 
     private static final String CHANNEL_ID = "daily_notification";
     private static int UNIQUE_ID = 123456;
 
-    private final Context context;
-    private final NotificationCompat.Builder mBuilder;
 
-    public NotificationUtil(Context context){
-        this.context = context;
-        mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
-    }
-
-
-
-    public void fireNotification(Artwork artwork){
+    public static void fireNotification(Context context,Artwork artwork,Bitmap bitmap){
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -61,7 +44,7 @@ public class NotificationUtil implements OnBitmapLoaded {
         //Set title
         String title = "Daily motivation";
         if(artwork.hasTitle()) {
-           title = artwork.getTitle();
+            title = artwork.getTitle();
         }
 
 
@@ -74,33 +57,19 @@ public class NotificationUtil implements OnBitmapLoaded {
                 .setAutoCancel(true);
 
         if(artwork.hasThumbnail()){
-            getBigPicture(context,artwork.getThumbnail());
+            mBuilder.setLargeIcon(bitmap)
+                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
         }
 
-
-    }
-
-    @Override
-    public void onLoaded(Bitmap bitmap) {
-        mBuilder.setLargeIcon(bitmap)
-                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         // notificationId is a unique int for each notification that you must define
         notificationManager.notify(UNIQUE_ID, mBuilder.build());
-    }
 
 
-    private void getBigPicture(Context context,@NonNull String thumbnail) {
-        final GlideRequest<Bitmap> bitmap = GlideApp.with(context).asBitmap();
-        bitmap.load(thumbnail).into(new SimpleTarget<Bitmap>() {
-            @Override
-            public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                NotificationUtil.this.onLoaded(resource);
-            }
-        });
 
     }
+
 
 
 

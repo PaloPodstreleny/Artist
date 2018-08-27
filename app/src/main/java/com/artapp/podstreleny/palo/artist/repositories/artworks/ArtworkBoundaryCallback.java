@@ -7,6 +7,7 @@ import android.util.Log;
 import com.artapp.podstreleny.palo.artist.AppExecutor;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
+import com.artapp.podstreleny.palo.artist.db.entity.ArtworkNexPage;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
 import com.artapp.podstreleny.palo.artist.network.NetworkResource;
@@ -20,6 +21,7 @@ import retrofit2.Call;
 public class ArtworkBoundaryCallback extends PagedList.BoundaryCallback<Artwork> {
 
     private static final String TAG = ArtworkBoundaryCallback.class.getSimpleName();
+    private static final int NEXT_PAGE_ID = 1;
     private static final int PREFETCH_SIZE = 50;
     private AppExecutor executor;
     private NetworkCallback callback;
@@ -105,9 +107,12 @@ public class ArtworkBoundaryCallback extends PagedList.BoundaryCallback<Artwork>
                     if (imageURL != null) {
                         artwork.setThumbnail(imageURL.getHref());
                     }
-                    if(nextFetch != null) {
+                    if (nextFetch != null){
                         artwork.setNextPage(nextFetch);
                     }
+                }
+                if(nextFetch != null){
+                    dao.updateNextPage(new ArtworkNexPage(NEXT_PAGE_ID,nextFetch));
                 }
                 dao.insertAll(artworks);
             }

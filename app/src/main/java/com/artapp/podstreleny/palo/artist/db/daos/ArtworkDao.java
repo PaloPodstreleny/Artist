@@ -5,8 +5,10 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.paging.DataSource;
+import android.arch.persistence.room.Update;
 
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
+import com.artapp.podstreleny.palo.artist.db.entity.ArtworkNexPage;
 
 import java.util.List;
 
@@ -25,6 +27,10 @@ public interface ArtworkDao {
     @Query("SELECT COUNT(*) AS n FROM artworks")
     int getNumberOfRows();
 
+    @Query("SELECT artwork_next_page.nextPage FROM artwork_next_page LIMIT 1")
+    String getNextPage();
 
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    void updateNextPage(ArtworkNexPage page);
 
 }
