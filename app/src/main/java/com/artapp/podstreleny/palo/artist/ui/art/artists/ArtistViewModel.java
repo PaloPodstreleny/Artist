@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import com.artapp.podstreleny.palo.artist.db.entity.Artist;
 import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.Status;
-import com.artapp.podstreleny.palo.artist.repositories.ArtistRepository;
+import com.artapp.podstreleny.palo.artist.repositories.artists.ArtistRepository;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 
 public class ArtistViewModel extends AndroidViewModel {

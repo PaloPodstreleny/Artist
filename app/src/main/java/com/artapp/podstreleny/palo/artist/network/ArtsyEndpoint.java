@@ -1,6 +1,8 @@
 package com.artapp.podstreleny.palo.artist.network;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artists.ArtistResponse;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkResponse;
+import com.artapp.podstreleny.palo.artist.network.api_responses.genes.GeneResponse;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -8,7 +10,6 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface ArtsyEndpoint  {
-
 
     /* ARTWORKS */
 
@@ -35,6 +36,20 @@ public interface ArtsyEndpoint  {
 
     @GET
     Call<ArtistResponse> getNextArtistPage(
+            @Url() String string,
+            @Header("X-Xapp-Token") String token
+    );
+
+    /* GENES */
+
+    @GET("genes")
+    Call<GeneResponse> getGenes(
+            @Header("X-Xapp-Token") String token,
+            @Query("size") int size
+    );
+
+    @GET
+    Call<GeneResponse> getNextGenePage(
             @Url() String string,
             @Header("X-Xapp-Token") String token
     );

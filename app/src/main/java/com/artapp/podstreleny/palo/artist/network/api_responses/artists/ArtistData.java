@@ -1,7 +1,6 @@
 package com.artapp.podstreleny.palo.artist.network.api_responses.artists;
 
 import com.artapp.podstreleny.palo.artist.db.entity.Artist;
-import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 
 import java.util.List;
 

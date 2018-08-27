@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.ui.art.artworks;
+package com.artapp.podstreleny.palo.artist.ui.art.genes;
 
 import android.app.Application;
 import android.arch.core.util.Function;
@@ -7,30 +7,31 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
 import android.arch.paging.PagedList;
+import android.support.annotation.NonNull;
 
-import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
+import com.artapp.podstreleny.palo.artist.db.entity.Gene;
 import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.Status;
-import com.artapp.podstreleny.palo.artist.repositories.artworks.ArtworkRepository;
+import com.artapp.podstreleny.palo.artist.repositories.genes.GeneRepository;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 
-public class ArtworksViewModel extends AndroidViewModel {
+public class GenesViewModel extends AndroidViewModel {
 
-    private ArtworkRepository mRepository = ArtworkRepository.getInstance(getApplication());
+    private GeneRepository mRepository = GeneRepository.getInstance(getApplication());
 
     private MutableLiveData<Boolean> shouldFetchToken = new MutableLiveData<>();
     private LiveData<Resource<ArtysToken>> token = Transformations.switchMap(shouldFetchToken, new Function<Boolean, LiveData<Resource<ArtysToken>>>() {
         @Override
         public LiveData<Resource<ArtysToken>> apply(Boolean input) {
-           return mRepository.fetchToken();
+            return mRepository.fetchToken();
         }
     });
 
     private MutableLiveData<String> tokenChanged = new MutableLiveData<>();
-    private LiveData<PagedList<Artwork>> artworks = Transformations.switchMap(tokenChanged, new Function<String, LiveData<PagedList<Artwork>>>() {
+    private LiveData<PagedList<Gene>> genes = Transformations.switchMap(tokenChanged, new Function<String, LiveData<PagedList<Gene>>>() {
         @Override
-        public LiveData<PagedList<Artwork>> apply(String input) {
-            return mRepository.getArtworks(input);
+        public LiveData<PagedList<Gene>> apply(String input) {
+            return mRepository.getGenes(input);
         }
     });
 
@@ -41,32 +42,33 @@ public class ArtworksViewModel extends AndroidViewModel {
         }
     });
 
-    public ArtworksViewModel(Application application){
+    public GenesViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public LiveData<PagedList<Artwork>> getArtworks() {
-        return artworks;
+    public LiveData<PagedList<Gene>> getGenes() {
+        return genes;
     }
 
     public LiveData<Resource<ArtysToken>> getToken() {
         return token;
     }
 
-    public LiveData<Status> getStatus(){return status;}
+    public LiveData<Status> getStatus() {
+        return status;
+    }
 
-    public void fetchToken(){
+    public void fetchToken() {
         final Boolean value = shouldFetchToken.getValue();
-        if(value == null){
+        if (value == null) {
             shouldFetchToken.setValue(true);
-        }else {
+        } else {
             shouldFetchToken.setValue(!value);
         }
     }
 
-    public void setToken(String token){
+    public void setToken(String token) {
         tokenChanged.setValue(token);
     }
-
 
 }

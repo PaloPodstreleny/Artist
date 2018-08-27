@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.repositories;
+package com.artapp.podstreleny.palo.artist.repositories.artists;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;

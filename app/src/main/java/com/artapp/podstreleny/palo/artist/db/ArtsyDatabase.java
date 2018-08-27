@@ -7,10 +7,12 @@ import android.arch.persistence.room.RoomDatabase;
 
 import com.artapp.podstreleny.palo.artist.db.daos.ArtistDao;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
+import com.artapp.podstreleny.palo.artist.db.daos.GeneDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artist;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
+import com.artapp.podstreleny.palo.artist.db.entity.Gene;
 
-@Database(entities = {Artwork.class, Artist.class}, version = 1, exportSchema = false)
+@Database(entities = {Artwork.class, Artist.class, Gene.class}, version = 1, exportSchema = false)
 public abstract class ArtsyDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "artsy_database";
@@ -18,6 +20,7 @@ public abstract class ArtsyDatabase extends RoomDatabase {
 
     public abstract ArtworkDao getArtworkDao();
     public abstract ArtistDao getArtistDao();
+    public abstract GeneDao getGeneDao();
 
     public static ArtsyDatabase getDatabaseInstance(Application context) {
         if (INSTANCE == null) {

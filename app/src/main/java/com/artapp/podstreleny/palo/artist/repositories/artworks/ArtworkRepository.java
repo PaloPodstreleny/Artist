@@ -1,4 +1,4 @@
-package com.artapp.podstreleny.palo.artist.repositories;
+package com.artapp.podstreleny.palo.artist.repositories.artworks;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
@@ -6,10 +6,8 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.DataSource;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
-import android.support.annotation.NonNull;
 
 import com.artapp.podstreleny.palo.artist.AppExecutor;
-import com.artapp.podstreleny.palo.artist.LiveList;
 import com.artapp.podstreleny.palo.artist.TokenFetcher;
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
