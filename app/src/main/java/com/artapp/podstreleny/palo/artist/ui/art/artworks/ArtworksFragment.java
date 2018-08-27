@@ -9,11 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +25,6 @@ import com.artapp.podstreleny.palo.artist.network.Status;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 import com.artapp.podstreleny.palo.artist.utils.TokenUtil;
 
-import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -122,7 +118,7 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
                             mHorizontalProgressBar.setVisibility(View.GONE);
                             break;
                         default:
-                        throw new IllegalArgumentException("Illegal status value");
+                            throw new IllegalArgumentException("Illegal status value");
 
                     }
                 }
@@ -186,7 +182,7 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
                 mButtonRefetch.setVisibility(View.GONE);
                 mErrorMessage.setVisibility(View.GONE);
                 if (newToken != null){
-                   mViewModel.setToken(newToken);
+                    mViewModel.setToken(newToken);
                 }
             }
         });
@@ -215,7 +211,7 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if(sharedPreferences.contains(getString(R.string.token_entry_date))){
+        if(key.equals(getString(R.string.token_entry_value))){
             newToken = sharedPreferences.getString(getString(R.string.token_entry_value),null);
             if(newToken != null){
                 mViewModel.setToken(newToken);

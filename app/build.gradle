@@ -32,6 +32,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$actual_version"
     implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
     implementation "com.android.support:support-vector-drawable:$actual_version"
+    implementation "com.android.support:preference-v7:$actual_version"
+
 
     //ROOM
     implementation "android.arch.persistence.room:runtime:$room_version"
@@ -63,6 +65,9 @@ dependencies {
 
     //Test Howk
     implementation 'com.wealdtech.hawk:hawk-core:1.2.0'
+
+    //Firebase Job dispatcher
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 
 
 }

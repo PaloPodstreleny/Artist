@@ -1,6 +1,8 @@
 package com.artapp.podstreleny.palo.artist.ui.main;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
@@ -8,9 +10,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.artapp.podstreleny.palo.artist.R;
+import com.artapp.podstreleny.palo.artist.services.NotificationJobService;
 import com.artapp.podstreleny.palo.artist.ui.art.ArtFragment;
 import com.artapp.podstreleny.palo.artist.ui.settings.SettingsFragment;
 import com.artapp.podstreleny.palo.artist.ui.shows.ShowFragment;
+import com.artapp.podstreleny.palo.artist.utils.SchedularUtil;
+import com.firebase.jobdispatcher.Constraint;
+import com.firebase.jobdispatcher.FirebaseJobDispatcher;
+import com.firebase.jobdispatcher.GooglePlayDriver;
+import com.firebase.jobdispatcher.Job;
+import com.firebase.jobdispatcher.Lifetime;
+import com.firebase.jobdispatcher.RetryStrategy;
+import com.firebase.jobdispatcher.Trigger;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Set default values for preferences - settings
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         mFragmentManager = getSupportFragmentManager();
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -63,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
             navigation.setSelectedItemId(selectedItem);
         }
 
+        SchedularUtil schedularUtil = SchedularUtil.getInstance(this);
+        schedularUtil.scheduleJobs();
 
     }
 
@@ -78,4 +94,6 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(ITEM_ID, selectedItem);
         super.onSaveInstanceState(outState);
     }
+
+
 }

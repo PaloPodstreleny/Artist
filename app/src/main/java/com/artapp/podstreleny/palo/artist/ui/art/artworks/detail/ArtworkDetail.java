@@ -3,6 +3,7 @@ package com.artapp.podstreleny.palo.artist.ui.art.artworks.detail;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -59,7 +60,10 @@ public class ArtworkDetail extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        final ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
 
         Intent intent = getIntent();
@@ -68,12 +72,14 @@ public class ArtworkDetail extends AppCompatActivity {
             GlideApp.with(this)
                     .load(artwork.getThumbnail())
                     .fallback(R.drawable.placeholder)
+                    .placeholder(R.drawable.placeholder)
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .into(mThumbnail);
 
             if(artwork.hasTitle()){
                 getSupportActionBar().setTitle(artwork.getTitle());
                 mTitle.setText(artwork.getTitle());
+                toolbar.setTitle(artwork.getTitle());
             }
 
             if(artwork.hasCategory()){

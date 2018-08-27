@@ -76,6 +76,11 @@ public class Artwork implements Parcelable{
         nextPage = in.readString();
     }
 
+    @Ignore
+    public Artwork(String name){
+        this.title = name;
+    }
+
     public static final Creator<Artwork> CREATOR = new Creator<Artwork>() {
         @Override
         public Artwork createFromParcel(Parcel in) {
@@ -185,8 +190,10 @@ public class Artwork implements Parcelable{
 
     @Ignore
     public boolean hasTitle(){
-        return (getTitle().length() > MINIMUN_LENGTH);
+        return (getTitle() != null && getTitle().length() > MINIMUN_LENGTH);
     }
+
+
 
     @Ignore
     @Override
@@ -211,20 +218,28 @@ public class Artwork implements Parcelable{
 
     @Ignore
     public boolean hasCategory() {
-        return (getCategory().length() > MINIMUN_LENGTH);
+        return (
+                getCategory() != null &&
+                getCategory().length() > MINIMUN_LENGTH);
     }
 
     @Ignore
     public boolean hasDate() {
-        return (getDate().length() > MINIMUN_LENGTH);
+        return (
+                getDate() != null &&
+                getDate().length() > MINIMUN_LENGTH);
     }
 
     @Ignore
     public boolean hasWebsite() {
-        return (getWebsite().length() > MINIMUN_LENGTH);
+        return (getWebsite() != null && getWebsite().length() > MINIMUN_LENGTH);
     }
 
     public boolean hasRights() {
-        return (getImageRights().length() > MINIMUN_LENGTH);
+        return (getImageRights() != null && getImageRights().length() > MINIMUN_LENGTH);
+    }
+
+    public boolean hasThumbnail() {
+        return (getThumbnail() != null && getThumbnail().length() > MINIMUN_LENGTH);
     }
 }

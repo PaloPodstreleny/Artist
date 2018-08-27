@@ -14,14 +14,24 @@
     <string name="art_page_artists_title">Artists</string>
     <string name="art_page_genes_title">Genes</string>
     <string name="error_not_defined_position">Not position is not defined!</string>
-    <string name="button_retry">retry</string>
     <string name="error_no_internet_connection">No internet connection!</string>
     <string name="error_unauthorized_connection">You are unauthorized to use this app!</string>
-    <string name="button_refetch">Refetch</string>
+
     <string name="transition_photo_detail_main">transition_photo_detail</string>
     <string name="transition_photo_detail_artist">transition_photo_detail_artist</string>
     <string name="shows_title">Shows</string>
     <string name="detail_show_title">Show detail</string>
+
+    <string name="button_refetch">Refetch</string>
+    <string name="button_retry">retry</string>
+
+
+    <string name="preferences_notification_key">preferences_notification_key</string>
+    <string name="preferences_notification_title">Daily art notification</string>
+    <string name="preferences_notification_summary_on">Notifications On</string>
+    <string name="preferences_notification_summary_off">Notifications Off</string>
+    <string name="notification_channel_name">Daily inspiration</string>
+    <string name="notification_channel_description">Providing daily notification for user</string>
 
 
 </resources>

@@ -19,6 +19,11 @@ public interface ArtworkDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Artwork> data);
 
+    @Query("SELECT * FROM artworks LIMIT 1 OFFSET :number")
+    Artwork getRandomArtwork(int number);
+
+    @Query("SELECT COUNT(*) AS n FROM artworks")
+    int getNumberOfRows();
 
 
 

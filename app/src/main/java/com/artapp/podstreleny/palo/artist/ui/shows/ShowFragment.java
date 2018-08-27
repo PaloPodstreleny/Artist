@@ -29,7 +29,7 @@ import com.artapp.podstreleny.palo.artist.utils.TokenUtil;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ShowFragment extends Fragment  {
+public class ShowFragment extends Fragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
 
     private static final String TAG = ShowFragment.class.getSimpleName();
@@ -188,4 +188,32 @@ public class ShowFragment extends Fragment  {
         });
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        final Context context = getContext();
+        if(context != null){
+            context.getSharedPreferences(getString(R.string.token_file_key),Context.MODE_PRIVATE).registerOnSharedPreferenceChangeListener(this);
+        }
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        final Context context = getContext();
+        if(context != null){
+            context.getSharedPreferences(getString(R.string.token_file_key),Context.MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(this);
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(key.equals(getString(R.string.token_entry_value))){
+            newToken = sharedPreferences.getString(getString(R.string.token_entry_value),null);
+            if(newToken != null){
+                mViewModel.setToken(newToken);
+            }
+        }
+    }
 }

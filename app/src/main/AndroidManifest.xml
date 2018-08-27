@@ -30,6 +30,17 @@
         <activity android:name=".ui.art.artists.detail.ArtistDetail" />
         <activity android:name=".ui.art.genes.detail.GeneDetail" />
         <activity android:name=".ui.shows.detail.ShowDetail"></activity>
+
+        <service
+            android:exported="false"
+            android:name=".services.NotificationJobService">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+            </intent-filter>
+        </service>
+
     </application>
+
+
 
 </manifest>

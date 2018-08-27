@@ -205,9 +205,9 @@ public class GenesFragment extends Fragment implements SharedPreferences.OnShare
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (sharedPreferences.contains(getString(R.string.token_entry_date))) {
-            newToken = sharedPreferences.getString(getString(R.string.token_entry_value), null);
-            if (newToken != null) {
+        if(key.equals(getString(R.string.token_entry_value))){
+            newToken = sharedPreferences.getString(getString(R.string.token_entry_value),null);
+            if(newToken != null){
                 mViewModel.setToken(newToken);
             }
         }

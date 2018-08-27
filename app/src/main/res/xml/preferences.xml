@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:key="@string/preferences_notification_key"
+        android:title="@string/preferences_notification_title"
+        android:defaultValue="true"
+        android:summaryOn="@string/preferences_notification_summary_on"
+        android:summaryOff="@string/preferences_notification_summary_off"
+        />
+</PreferenceScreen>
