@@ -12,6 +12,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -68,6 +71,8 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
         final View view = inflater.inflate(R.layout.show_fragment,container,false);
         ButterKnife.bind(this,view);
         mToolbar.setTitle(R.string.shows_title);
+        setMenuVisibility(true);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -204,6 +209,29 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
         final Context context = getContext();
         if(context != null){
             context.getSharedPreferences(getString(R.string.token_file_key),Context.MODE_PRIVATE).unregisterOnSharedPreferenceChangeListener(this);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.show_menu,menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.show_menu_upcoming:
+                //impelment upcoming
+                return true;
+            case R.id.show_menu_running:
+                //implement running
+                return true;
+            case R.id.show_menu_closed:
+                //implement closed
+                return true;
+            default:
+                throw new IllegalArgumentException("menuitem id is not recognized!");
         }
     }
 

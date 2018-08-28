@@ -34,6 +34,9 @@
     <string name="notification_channel_description">Providing daily notification for user</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="show_menu_upcoming_title">Upcoming</string>
+    <string name="show_menu_running_title">Running</string>
+    <string name="show_menu_closed_title">Closed</string>
 
 
 </resources>
