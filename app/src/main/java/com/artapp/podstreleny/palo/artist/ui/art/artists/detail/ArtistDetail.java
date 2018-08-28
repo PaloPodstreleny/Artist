@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,6 +52,25 @@ public class ArtistDetail extends AppCompatActivity {
     @BindView(R.id.toolbarShadow)
     Toolbar toolbar;
 
+    @BindView(R.id.birthday_label)
+    TextView labelBirthday;
+
+    @BindView(R.id.death_day_label)
+    TextView labelDeathDay;
+
+    @BindView(R.id.gender_label)
+    TextView labelGender;
+
+    @BindView(R.id.location_label)
+    TextView labelLocation;
+
+    @BindView(R.id.nationality_label)
+    TextView labelNationality;
+
+    @BindView(R.id.hometown_label)
+    TextView labelHometown;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,43 +89,61 @@ public class ArtistDetail extends AppCompatActivity {
             final Artist artist = intent.getParcelableExtra(ARTIST_DETAIL);
 
             if(artist.hasThumbnail()){
+                mImageView.setVisibility(View.VISIBLE);
                 GlideApp.with(this)
                         .load(artist.getThumbnail())
                         .fallback(R.drawable.placeholder)
                         .transition(DrawableTransitionOptions.withCrossFade())
                         .into(mImageView);
+
+            }else {
+                mImageView.setVisibility(View.GONE);
             }
 
             if(artist.hasName()){
                 mArtistName.setText(artist.getName());
+                mArtistName.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasGender()){
                 mArtistGender.setText(artist.getGender());
+                mArtistGender.setVisibility(View.VISIBLE);
+                labelGender.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasBiography()){
                 mArtistBiography.setText(artist.getBiography());
+                mArtistBiography.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasBirthday()){
                 mArtistBirthday.setText(artist.getBirthday());
+                mArtistBirthday.setVisibility(View.VISIBLE);
+                labelBirthday.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasDeathDay()){
                 mArtistDeathDay.setText(artist.getDeathday());
+                mArtistDeathDay.setVisibility(View.VISIBLE);
+                labelDeathDay.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasHometown()){
                 mArtistHometown.setText(artist.getHometown());
+                mArtistHometown.setVisibility(View.VISIBLE);
+                labelHometown.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasLocation()){
                 mArtistLocation.setText(artist.getLocation());
+                mArtistLocation.setVisibility(View.VISIBLE);
+                labelLocation.setVisibility(View.VISIBLE);
             }
 
             if(artist.hasNationality()){
                 mArtistNationality.setText(artist.getNationality());
+                mArtistNationality.setVisibility(View.VISIBLE);
+                labelNationality.setVisibility(View.VISIBLE);
             }
 
 

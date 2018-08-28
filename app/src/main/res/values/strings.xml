@@ -18,7 +18,6 @@
     <string name="error_unauthorized_connection">You are unauthorized to use this app!</string>
 
     <string name="transition_photo_detail_main">transition_photo_detail</string>
-    <string name="transition_photo_detail_artist">transition_photo_detail_artist</string>
     <string name="shows_title">Shows</string>
     <string name="detail_show_title">Show detail</string>
 
@@ -48,7 +47,14 @@
     <string name="content_description_icon_opening_days">Icon, Opening days</string>
     <string name="content_description_icon_recomended_group">Icon, recommended group</string>
     <string name="content_description_photo_show_detail">Photo detail of show</string>
+    <string name="content_description_photo_artwork_detail">Photo detail of artwork </string>
     <string name="content_description_photo_gene">Photo of gene</string>
+    <string name="artist_detail_gender">Gender:</string>
+    <string name="artist_detail_birthday">Birthday:</string>
+    <string name="artist_detail_death_day">Death day:</string>
+    <string name="artist_detail_location">Location:</string>
+    <string name="artist_detail_nationality">Nationality:</string>
+    <string name="artist_detail_hometown">Hometown:</string>
 
 
 </resources>

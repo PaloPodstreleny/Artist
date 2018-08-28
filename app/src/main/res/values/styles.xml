@@ -33,6 +33,12 @@
         <item name="android:textSize">12dp</item>
     </style>
 
+    <style name="TextPrimaryLabel" parent="TextPrimary">
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
 
     <style name="WidgetArtTV" parent="TextPrimary">
         <item name="android:textColor">@color/colorPrimary</item>
