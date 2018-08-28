@@ -3,6 +3,7 @@ package com.artapp.podstreleny.palo.artist.ui.shows.detail;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,24 +31,26 @@ public class ShowDetail extends AppCompatActivity {
     @BindView(R.id.show_thumbnail_iv)
     ImageView mShowImageView;
 
-    @BindView(R.id.show_start_at_tv)
-    TextView mShowStartDate;
-
-    @BindView(R.id.show_end_at_tv)
-    TextView mShowEndDate;
-
     @BindView(R.id.show_press_release_tv)
     TextView mShowPressRelease;
-
-    @BindView(R.id.show_solo_tv)
-    TextView mShowSolo;
-
-    @BindView(R.id.show_group_tv)
-    TextView mShowGroup;
 
     @BindView(R.id.toolbarShadow)
     android.support.v7.widget.Toolbar mToolbar;
 
+    @BindView(R.id.status_iv)
+    ImageView mStatusIV;
+
+    @BindView(R.id.start_day_iv)
+    ImageView mStarEndImageView;
+
+    @BindView(R.id.show_start_end_tv)
+    TextView mStartEndDayTv;
+
+    @BindView(R.id.solo_group_iv)
+    ImageView mSoloGroupIV;
+
+    @BindView(R.id.solog_group_tv)
+    TextView mSoloGroupTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,30 +77,36 @@ public class ShowDetail extends AppCompatActivity {
 
             }
 
+            if(show.hasStatus()){
+                mShowStatus.setText(show.getStatus());
+                mStatusIV.setVisibility(View.VISIBLE);
+            }
+
+            if(show.hasStartDate() && show.hasEndDate()){
+                mStartEndDayTv.setText(show.getStartEndDate());
+                mStarEndImageView.setVisibility(View.VISIBLE);
+            }
+
+            if(show.isSoloShow()){
+                mSoloGroupIV.setVisibility(View.VISIBLE);
+                mSoloGroupTV.append(getString(R.string.show_detail_solo_person));
+            }
+
+            if(show.isGroupShow()){
+                mStatusIV.setVisibility(View.VISIBLE);
+                mSoloGroupTV.append(getString(R.string.show_detail_group_people));
+            }
+
             if(show.hasDescription()){
                 mShowDescription.setText(show.getDescription());
 
             }
 
-            if(show.hasStatus()){
-                mShowStatus.setText(show.getStatus());
-            }
-
-            if(show.hasStartDate()){
-                mShowStartDate.setText(show.getStartAt());
-            }
-
-            if(show.hasEndDate()){
-                mShowEndDate.setText(show.getEndAt());
-            }
 
             if(show.hasPressRelease()){
                 mShowPressRelease.setText(show.getPressRelease());
             }
 
-
-            mShowSolo.setText(String.valueOf(show.isSoloShow()));
-            mShowGroup.setText(String.valueOf(show.isGroupShow()));
 
 
         }

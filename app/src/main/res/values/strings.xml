@@ -42,6 +42,11 @@
     <string name="widget_error_no_data">No artworks loaded yet</string>
     <string name="notification_default_title">Daily motivation</string>
     <string name="notification_default_content_text">Check out this artwork!</string>
+    <string name="show_detail_solo_person">Person</string>
+    <string name="show_detail_group_people">Group of people</string>
+    <string name="content_description_icon_status_of_show">Icon, status of show</string>
+    <string name="content_description_icon_opening_days">Icon, Opening days</string>
+    <string name="content_description_icon_recomended_group">Icon, recommended group</string>
 
 
 </resources>

@@ -28,6 +28,11 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="TextSecodary">
+        <item name="android:textColor">@color/colorGreyPlaceholder</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
 
     <style name="WidgetArtTV" parent="TextPrimary">
         <item name="android:textColor">@color/colorPrimary</item>
@@ -36,6 +41,21 @@
 
     <style name="WidgetArtListItemTV" parent="TextPrimary">
         <item name="android:padding">@dimen/inner_padding_small</item>
+    </style>
+
+
+    <style name="Heading">
+        <item name="android:textSize">24dp</item>
+        <item name="android:fontFamily">sans-serif-bold</item>
+    </style>
+    <style name="DetailTitle" parent="Heading">
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 

@@ -248,4 +248,8 @@ public class Show implements Parcelable,IListItem {
     public boolean hasPressRelease() {
         return (getPressRelease() != null && getPressRelease().length() > MINIMUM_SIZE);
     }
+
+    public String getStartEndDate() {
+        return getStartAt().substring(0,10).replace("-","/") +" - " + getEndAt().substring(0,10).replace("-","/");
+    }
 }

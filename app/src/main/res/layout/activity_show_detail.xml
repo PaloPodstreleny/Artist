@@ -23,10 +23,11 @@
             android:id="@+id/show_thumbnail_iv"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/colorGreyBackground"
+            android:padding="@dimen/inner_padding_small"
             android:scaleType="fitCenter"
             android:transitionName="@string/transition_photo_detail_main"
-            android:background="@color/colorGreyPlaceholder"
-            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
@@ -34,56 +35,117 @@
 
         <TextView
             android:id="@+id/show_name_tv"
-            android:layout_width="wrap_content"
+            style="@style/DetailTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/show_thumbnail_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/show_thumbnail_iv"
+            tools:text="Heading " />
+
+        <ImageView
+            android:id="@+id/status_iv"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginLeft="@dimen/layout_margin_medium"
+            android:layout_marginStart="@dimen/layout_margin_medium"
+            android:layout_marginTop="@dimen/layout_margin_small"
+            android:contentDescription="@string/content_description_icon_status_of_show"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/show_name_tv"
+            app:srcCompat="@drawable/ic_status"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/show_status_tv"
+            style="@style/TextSecodary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_small"
+            android:layout_marginStart="@dimen/layout_margin_small"
+            android:fontFamily="sans-serif-bold"
+            app:layout_constraintBottom_toBottomOf="@+id/status_iv"
+            app:layout_constraintStart_toEndOf="@+id/status_iv"
+            app:layout_constraintTop_toTopOf="@id/status_iv"
+            tools:text="Hello world!" />
+
+        <ImageView
+            android:id="@+id/start_day_iv"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginLeft="@dimen/layout_margin_medium"
+            android:layout_marginStart="@dimen/layout_margin_medium"
+            android:layout_marginTop="@dimen/layout_margin_small"
+            android:contentDescription="@string/content_description_icon_opening_days"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/show_status_tv"
+            app:layout_constraintTop_toBottomOf="@id/show_name_tv"
+            app:srcCompat="@drawable/ic_date_range"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/show_start_end_tv"
+            style="@style/TextSecodary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_small"
+            android:layout_marginStart="@dimen/layout_margin_small"
+            android:fontFamily="sans-serif-bold"
+            app:layout_constraintBottom_toBottomOf="@+id/start_day_iv"
+            app:layout_constraintStart_toEndOf="@+id/start_day_iv"
+            app:layout_constraintTop_toTopOf="@id/start_day_iv"
+            tools:text="Hello world!" />
+
+        <ImageView
+            android:id="@+id/solo_group_iv"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_marginLeft="@dimen/layout_margin_medium"
+            android:layout_marginStart="@dimen/layout_margin_medium"
+            android:layout_marginTop="@dimen/layout_margin_small"
+            android:contentDescription="@string/content_description_icon_recomended_group"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/show_name_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/start_day_iv"
+            app:srcCompat="@drawable/ic_person_pin_black_24dp"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/solog_group_tv"
+            style="@style/TextSecodary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_margin_small"
+            android:layout_marginStart="@dimen/layout_margin_small"
+            android:fontFamily="sans-serif-bold"
+            app:layout_constraintBottom_toBottomOf="@+id/solo_group_iv"
+            app:layout_constraintStart_toEndOf="@+id/solo_group_iv"
+            app:layout_constraintTop_toTopOf="@id/solo_group_iv"
+            tools:text="Hello world!" />
 
 
         <TextView
             android:id="@+id/show_description_tv"
-            android:layout_width="wrap_content"
+            style="@style/TextPrimary"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/show_status_tv" />
+            app:layout_constraintTop_toBottomOf="@id/solo_group_iv" />
+
 
         <TextView
-            android:id="@+id/show_start_at_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/show_press_release_tv"
+            style="@style/TextPrimary"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/show_description_tv" />
-        <TextView
-            android:id="@+id/show_end_at_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/show_start_at_tv" />
-        <TextView
-            android:id="@+id/show_press_release_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/show_end_at_tv" />
-        <TextView
-            android:id="@+id/show_solo_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/show_press_release_tv" />
-        <TextView
-            android:id="@+id/show_group_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/show_solo_tv" />
+
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -76,6 +76,7 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
             mTokenUtil = new TokenUtil(context,mSharedPreferences);
         }
 
+
         mAdapter = new ArtworkListAdapter(this,getActivity());
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.setHasFixedSize(true);
