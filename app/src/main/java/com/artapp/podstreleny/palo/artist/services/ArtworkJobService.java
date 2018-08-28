@@ -24,7 +24,7 @@ public class ArtworkJobService extends JobService {
                 jobFinished(job, false);
             }
         } else {
-            jobFinished(job, false);
+            jobFinished(job, true);
         }
         return true;
     }

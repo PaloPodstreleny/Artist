@@ -11,7 +11,6 @@ import com.artapp.podstreleny.palo.artist.AppExecutor;
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
-import com.artapp.podstreleny.palo.artist.db.entity.ArtworkNexPage;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
 import com.artapp.podstreleny.palo.artist.network.NetworkResourceWorkerThread;
@@ -31,7 +30,6 @@ public class ArtworkIntent extends IntentService {
     private static final String TAG = ArtworkIntent.class.getSimpleName();
     public static final String ARTWORK_INTENT_SERVICE = "artwork_intent_service";
     private static final int LOADING_ARTWORK_SIZE = 50;
-    private static final int NEXT_PAGE_ID = 0;
 
     public ArtworkIntent(){
         super(ARTWORK_INTENT_SERVICE);
@@ -96,9 +94,6 @@ public class ArtworkIntent extends IntentService {
                     if (nextFetch != null){
                         artwork.setNextPage(nextFetch);
                     }
-                }
-                if(nextFetch != null){
-                    dao.updateNextPage(new ArtworkNexPage(NEXT_PAGE_ID,nextFetch));
                 }
                 dao.insertAll(artworks);
             }

@@ -1,4 +1,5 @@
 package com.artapp.podstreleny.palo.artist.repositories.artworks;
+
 import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
@@ -7,7 +8,6 @@ import android.util.Log;
 import com.artapp.podstreleny.palo.artist.AppExecutor;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
-import com.artapp.podstreleny.palo.artist.db.entity.ArtworkNexPage;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
 import com.artapp.podstreleny.palo.artist.network.NetworkResource;
@@ -15,6 +15,7 @@ import com.artapp.podstreleny.palo.artist.network.api_responses.ImportantLink;
 import com.artapp.podstreleny.palo.artist.network.api_responses.Link;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkData;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkResponse;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -61,7 +62,7 @@ public class ArtworkBoundaryCallback extends PagedList.BoundaryCallback<Artwork>
             @Override
             protected void saveCallResult(@NonNull ArtworkResponse bodyResponse) {
                 isLoaded = false;
-               saveArtworkData(bodyResponse);
+                saveArtworkData(bodyResponse);
             }
 
         };
@@ -110,9 +111,6 @@ public class ArtworkBoundaryCallback extends PagedList.BoundaryCallback<Artwork>
                     if (nextFetch != null){
                         artwork.setNextPage(nextFetch);
                     }
-                }
-                if(nextFetch != null){
-                    dao.updateNextPage(new ArtworkNexPage(NEXT_PAGE_ID,nextFetch));
                 }
                 dao.insertAll(artworks);
             }

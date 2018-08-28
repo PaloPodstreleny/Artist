@@ -44,7 +44,6 @@ public class NotificationJobService extends JobService {
             @Override
             public void run() {
                 final ArtworkDao dao = database.getArtworkDao();
-
                 final int rows = dao.getNumberOfRows();
 
                 //If there are no data return
