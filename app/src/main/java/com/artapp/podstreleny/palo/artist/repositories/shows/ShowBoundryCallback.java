@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.artapp.podstreleny.palo.artist.AppExecutor;
 import com.artapp.podstreleny.palo.artist.db.daos.ShowDao;
-import com.artapp.podstreleny.palo.artist.db.entity.Gene;
 import com.artapp.podstreleny.palo.artist.db.entity.Show;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
@@ -22,7 +21,7 @@ import java.util.List;
 
 import retrofit2.Call;
 
-class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
+class ShowBoundryCallback extends PagedList.BoundaryCallback<Show> {
 
     private static final String TAG = ShowBoundryCallback.class.getSimpleName();
     private static final int PREFETCH_SIZE = 50;
@@ -35,7 +34,7 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
 
     private boolean isLoaded;
 
-    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback) {
+    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint, NetworkCallback callback) {
         this.executor = executor;
         this.endpoint = endpoint;
         this.token = token;
@@ -43,38 +42,30 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
         this.callback = callback;
     }
 
-    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback,String filter) {
-        this.executor = executor;
-        this.endpoint = endpoint;
-        this.token = token;
-        this.dao = dao;
-        this.callback = callback;
+    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint, NetworkCallback callback, String filter) {
+        this(token, dao, executor, endpoint, callback);
         this.filter = filter;
     }
 
     @Override
     public void onZeroItemsLoaded() {
-        if(isLoaded) return;
+        if (isLoaded) return;
         isLoaded = true;
-        new NetworkResource<ShowResponse>(executor,callback,true){
+        new NetworkResource<ShowResponse>(executor, callback, true) {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"ZeroItemsLoaded problem Gene!");
+                Log.v(TAG, "ZeroItemsLoaded problem Gene!");
             }
 
             @NonNull
             @Override
             protected Call<ShowResponse> createCall() {
-                if(filter == null) {
+                if (filter == null) {
                     return endpoint.getShows(token, PREFETCH_SIZE);
-                }else if(filter.equals(ShowPeriod.CLOSED)) {
-                    return endpoint.getShows(token, PREFETCH_SIZE);
-                }else if(filter.equals(ShowPeriod.RUNNING)){
-                    return endpoint.getShows(token, PREFETCH_SIZE);
-                }else if(filter.equals(ShowPeriod.UPCOMING)){
-                    return endpoint.getShows(token, PREFETCH_SIZE);
-                }else {
+                } else if (filter.equals(ShowPeriod.CLOSED) || filter.equals(ShowPeriod.RUNNING) || filter.equals(ShowPeriod.UPCOMING) ) {
+                    return endpoint.getFilteredShow(token, PREFETCH_SIZE, filter);
+                } else {
                     throw new IllegalArgumentException("Wrong ShowPeriod defined!");
                 }
             }
@@ -91,13 +82,13 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
 
     @Override
     public void onItemAtEndLoaded(@NonNull final Show itemAtEnd) {
-        if(isLoaded) return;
+        if (isLoaded) return;
         isLoaded = true;
-        new NetworkResource<ShowResponse>(executor,callback,false){
+        new NetworkResource<ShowResponse>(executor, callback, false) {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"onItemAtEndLoaded problem Gene !");
+                Log.v(TAG, "onItemAtEndLoaded problem Gene !");
             }
 
             @NonNull
@@ -129,7 +120,7 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
                     if (imageURL != null) {
                         show.setThumbnail(imageURL.getHref());
                     }
-                    if(nextFetch != null) {
+                    if (nextFetch != null) {
                         show.setNextPage(nextFetch);
                     }
                 }

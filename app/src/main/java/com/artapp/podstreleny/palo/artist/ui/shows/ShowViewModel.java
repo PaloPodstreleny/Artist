@@ -40,7 +40,8 @@ public class ShowViewModel extends AndroidViewModel {
                 return mRepository.getFilteredShows(input,type);
             }else if (type.equals(ShowPeriod.CLOSED)){
                 return mRepository.getFilteredShows(input,type);
-            }else {
+            }
+            else {
                 throw new IllegalArgumentException("Undefined type!");
             }
 

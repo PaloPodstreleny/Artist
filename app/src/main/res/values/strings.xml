@@ -37,6 +37,7 @@
     <string name="show_menu_upcoming_title">Upcoming</string>
     <string name="show_menu_running_title">Running</string>
     <string name="show_menu_closed_title">Closed</string>
+    <string name="show_menu_current_title">Current</string>
 
 
 </resources>

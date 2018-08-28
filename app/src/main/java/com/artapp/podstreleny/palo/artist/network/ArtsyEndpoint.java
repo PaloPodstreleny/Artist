@@ -64,16 +64,19 @@ public interface ArtsyEndpoint {
             @Query("size") int size
     );
 
+
+    @GET("shows")
+    Call<ShowResponse> getFilteredShow(
+            @Header("X-Xapp-Token") String token,
+            @Query("size") int size,
+            @Query("status") String status
+    );
+
     @GET
     Call<ShowResponse> getNextShow(
             @Url() String string,
             @Header("X-Xapp-Token") String token
     );
-
-    //TODO check if i can filter show like this
-    Call<ShowResponse> getClosedShows(String token, int prefetchSize);
-    Call<ShowResponse> getRunningShows(String token, int prefetchSize);
-    Call<ShowResponse> getUpcommingShows(String token, int prefetchSize);
 }
 
 
