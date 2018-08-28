@@ -34,7 +34,7 @@
     </style>
 
     <style name="TextPrimaryLabel" parent="TextPrimary">
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">4dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:visibility">gone</item>
     </style>

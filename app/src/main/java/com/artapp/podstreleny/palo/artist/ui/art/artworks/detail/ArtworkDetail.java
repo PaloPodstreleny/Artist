@@ -53,8 +53,21 @@ public class ArtworkDetail extends AppCompatActivity {
     @BindView(R.id.toolbarShadow)
     Toolbar toolbar;
 
-    @BindView(R.id.fab_share)
-    FloatingActionButton mButton;
+    @BindView(R.id.category_labels)
+    TextView labelCategory;
+
+    @BindView(R.id.date_labels)
+    TextView labelDate;
+
+    @BindView(R.id.published_labels)
+    TextView lablePublished;
+
+    @BindView(R.id.rights_labels)
+    TextView labelRigths;
+
+    @BindView(R.id.website_labels)
+    TextView labelWebsite;
+
 
 
     @Override
@@ -87,12 +100,6 @@ public class ArtworkDetail extends AppCompatActivity {
             }
         }
 
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ArtworkDetail.this,"Nooo",Toast.LENGTH_LONG).show();
-            }
-        });
 
     }
 
@@ -112,26 +119,34 @@ public class ArtworkDetail extends AppCompatActivity {
 
         if(artwork.hasCategory()){
             mCategory.setText(artwork.getCategory());
+            mCategory.setVisibility(View.VISIBLE);
+            labelCategory.setVisibility(View.VISIBLE);
         }
 
         if(artwork.hasDate()){
             mDate.setText(artwork.getDate());
+            mDate.setVisibility(View.VISIBLE);
+            labelDate.setVisibility(View.VISIBLE);
         }
 
         if(artwork.isPublished()){
-            mPublished.setText(""+artwork.isPublished());
+            mPublished.setText(getString(R.string.published_true));
+            mPublished.setVisibility(View.VISIBLE);
+            lablePublished.setVisibility(View.VISIBLE);
+            //Check
         }
 
         if(artwork.hasWebsite()){
             mWebsite.setText(artwork.getWebsite());
+            mWebsite.setVisibility(View.VISIBLE);
+            labelWebsite.setVisibility(View.VISIBLE);
         }
 
         if(artwork.hasRights()){
             mRights.setText(artwork.getImageRights());
+            mRights.setVisibility(View.VISIBLE);
+            labelRigths.setVisibility(View.VISIBLE);
         }
 
-        if(artwork.isShare()){
-            mButton.setVisibility(View.VISIBLE);
-        }
     }
 }

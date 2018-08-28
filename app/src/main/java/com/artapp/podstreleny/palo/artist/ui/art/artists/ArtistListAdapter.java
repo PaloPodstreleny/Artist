@@ -22,7 +22,6 @@ import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Artist;
 import com.artapp.podstreleny.palo.artist.ui.art.artists.detail.ArtistDetail;
-import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import butterknife.BindView;
