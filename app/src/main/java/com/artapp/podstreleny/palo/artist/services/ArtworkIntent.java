@@ -39,7 +39,8 @@ public class ArtworkIntent extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        //TODO check if i write data to database after succesfull fetch from internet
+
+
         if(intent != null) {
 
             final AppExecutor executor = AppExecutor.getInstance();
@@ -47,7 +48,7 @@ public class ArtworkIntent extends IntentService {
             final ArtworkDao dao = ArtsyDatabase.getDatabaseInstance(getApplication()).getArtworkDao();
 
             if (intent.hasExtra(ARTWORK_INTENT_SERVICE)) {
-                final String nextPage = intent.getStringExtra(ARTWORK_INTENT_SERVICE);
+                final String token = intent.getStringExtra(ARTWORK_INTENT_SERVICE);
 
                 new NetworkResourceWorkerThread<ArtworkResponse>(executor, new NetworkCallback() {
                     @Override
@@ -63,7 +64,7 @@ public class ArtworkIntent extends IntentService {
                     @NonNull
                     @Override
                     protected Call<ArtworkResponse> createCall() {
-                        return endpoint.getArtworks(nextPage,LOADING_ARTWORK_SIZE);
+                        return endpoint.getArtworks(token,LOADING_ARTWORK_SIZE);
                     }
 
                     @Override

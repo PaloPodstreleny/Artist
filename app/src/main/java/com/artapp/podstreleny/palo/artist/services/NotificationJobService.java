@@ -1,4 +1,5 @@
 package com.artapp.podstreleny.palo.artist.services;
+
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -23,7 +24,6 @@ import java.util.Random;
 
 public class NotificationJobService extends JobService {
 
-    //TODO check if udacity is working the same way
     private boolean shouldRetry = true;
 
     @Override
@@ -31,11 +31,9 @@ public class NotificationJobService extends JobService {
 
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
-        if(preferences.contains(getString(R.string.preferences_notification_key))){
-            if(!preferences.getBoolean(getString(R.string.preferences_notification_key),false)){
-                shouldRetry = false;
-                jobFinished(job,false);
-                return false;
+        if (preferences.contains(getString(R.string.preferences_notification_key))) {
+            if (!preferences.getBoolean(getString(R.string.preferences_notification_key), false)) {
+                jobFinished(job, true);
             }
         }
 
@@ -50,9 +48,8 @@ public class NotificationJobService extends JobService {
                 final int rows = dao.getNumberOfRows();
 
                 //If there are no data return
-                if (rows == 0){
-                    jobFinished(job,true);
-                    shouldRetry = true;
+                if (rows == 0) {
+                    jobFinished(job, true);
                     return;
                 }
 
@@ -62,12 +59,12 @@ public class NotificationJobService extends JobService {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        GlideApp.with(getBaseContext()).asBitmap().load(artwork.getThumbnail()).into(new SimpleTarget<Bitmap>(){
+                        GlideApp.with(getBaseContext()).asBitmap().load(artwork.getThumbnail()).into(new SimpleTarget<Bitmap>() {
                             @Override
                             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                                NotificationUtil.fireNotification(getBaseContext(),artwork,resource);
+                                NotificationUtil.fireNotification(getBaseContext(), artwork, resource);
                                 shouldRetry = false;
-                                jobFinished(job,false);
+                                jobFinished(job, false);
                             }
                         });
                     }

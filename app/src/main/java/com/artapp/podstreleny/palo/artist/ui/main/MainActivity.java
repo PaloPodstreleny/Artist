@@ -1,6 +1,5 @@
 package com.artapp.podstreleny.palo.artist.ui.main;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -8,24 +7,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 
 import com.artapp.podstreleny.palo.artist.R;
-import com.artapp.podstreleny.palo.artist.services.NotificationJobService;
 import com.artapp.podstreleny.palo.artist.ui.art.ArtFragment;
 import com.artapp.podstreleny.palo.artist.ui.settings.SettingsFragment;
 import com.artapp.podstreleny.palo.artist.ui.shows.ShowFragment;
-import com.artapp.podstreleny.palo.artist.utils.SchedularUtil;
-import com.firebase.jobdispatcher.Constraint;
-import com.firebase.jobdispatcher.FirebaseJobDispatcher;
-import com.firebase.jobdispatcher.GooglePlayDriver;
-import com.firebase.jobdispatcher.Job;
-import com.firebase.jobdispatcher.Lifetime;
-import com.firebase.jobdispatcher.RetryStrategy;
-import com.firebase.jobdispatcher.Trigger;
+import com.artapp.podstreleny.palo.artist.services.Schedular;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -104,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        SchedularUtil schedularUtil = SchedularUtil.getInstance(this);
-        schedularUtil.scheduleJobs();
+        Schedular schedular = Schedular.getInstance(this);
+        schedular.scheduleJobs();
 
     }
 
