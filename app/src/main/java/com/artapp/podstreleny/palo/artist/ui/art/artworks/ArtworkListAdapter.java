@@ -3,13 +3,11 @@ package com.artapp.podstreleny.palo.artist.ui.art.artworks;
 
 import android.app.ActivityOptions;
 import android.arch.paging.PagedListAdapter;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.BundleCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.util.DiffUtil;
@@ -19,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
@@ -101,16 +98,19 @@ public class ArtworkListAdapter extends PagedListAdapter<Artwork,ArtworkListAdap
         @Override
         public void onClick(View v) {
             final Intent intent = new Intent(context, ArtworkDetail.class);
-            intent.putExtra(ArtworkDetail.ARTWORK_DETAIL,getItem(getAdapterPosition()));
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                final Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
-                        context,
-                        mImageView,
-                        mImageView.getTransitionName()).toBundle();
-                context.startActivity(intent,bundle);
-            }else {
+            final Artwork artwork = getItem(getAdapterPosition());
+            if(artwork != null) {
+                intent.putExtra(ArtworkDetail.ARTWORK_DETAIL, artwork.getId());
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    final Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(
+                            context,
+                            mImageView,
+                            mImageView.getTransitionName()).toBundle();
+                    context.startActivity(intent, bundle);
+                } else {
 
-                context.startActivity(intent);
+                    context.startActivity(intent);
+                }
             }
         }
     }

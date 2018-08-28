@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.TaskStackBuilder;
 
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
@@ -37,21 +38,24 @@ public class NotificationUtil {
         }
 
         Intent intent = new Intent(context, ArtworkDetail.class);
-        intent.putExtra(ArtworkDetail.ARTWORK_DETAIL,artwork);
+        intent.putExtra(ArtworkDetail.ARTWORK_DETAIL,artwork.getId());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+        stackBuilder.addNextIntentWithParentStack(intent);
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(1,PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Set title
-        String title = "Daily motivation";
+        String title = context.getString(R.string.notification_default_title);
         if(artwork.hasTitle()) {
             title = artwork.getTitle();
         }
 
 
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_event)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(title)
-                .setContentText("Check out this artwork!")
+                .setContentText(context.getString(R.string.notification_default_content_text))
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);

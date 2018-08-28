@@ -1,6 +1,8 @@
 package com.artapp.podstreleny.palo.artist.services;
 
 import android.app.IntentService;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +10,7 @@ import android.support.annotation.WorkerThread;
 import android.util.Log;
 
 import com.artapp.podstreleny.palo.artist.AppExecutor;
+import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
@@ -20,6 +23,7 @@ import com.artapp.podstreleny.palo.artist.network.api_responses.Link;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkData;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkResponse;
 import com.artapp.podstreleny.palo.artist.network.retrofit.RetrofitProvider;
+import com.artapp.podstreleny.palo.artist.widget.ArtysWidget;
 
 import java.util.List;
 
@@ -68,8 +72,14 @@ public class ArtworkIntent extends IntentService {
                     @Override
                     protected void saveCallResult(@NonNull ArtworkResponse item) {
                         setNetworkResult(item,dao);
+                        AppWidgetManager manager = AppWidgetManager.getInstance(getApplicationContext());
+                        int[] appWidgetIds = manager.getAppWidgetIds(new ComponentName(getApplicationContext(), ArtysWidget.class));
+                        manager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gv);
+                        ArtysWidget.onUpdateWidget(getApplicationContext(), manager, appWidgetIds);
+
                     }
                 };
+
 
 
             }

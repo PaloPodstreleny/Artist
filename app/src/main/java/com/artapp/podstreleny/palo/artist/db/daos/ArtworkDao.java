@@ -1,5 +1,6 @@
 package com.artapp.podstreleny.palo.artist.db.daos;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.paging.DataSource;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -28,5 +29,10 @@ public interface ArtworkDao {
     @Query("SELECT artworks.next_page FROM artworks LIMIT 1")
     String getNextPage();
 
+    @Query("SELECT * FROM artworks LIMIT 10")
+    List<Artwork> getArtworksForWidget();
 
+
+    @Query("SELECT * FROM artworks WHERE artworks.id = :id")
+    LiveData<Artwork> getArtwork(String id);
 }

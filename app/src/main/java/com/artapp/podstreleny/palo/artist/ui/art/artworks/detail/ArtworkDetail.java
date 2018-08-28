@@ -1,11 +1,14 @@
 package com.artapp.podstreleny.palo.artist.ui.art.artworks.detail;
 
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,6 +19,7 @@ import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -68,46 +72,19 @@ public class ArtworkDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent != null && intent.hasExtra(ARTWORK_DETAIL)){
-            final Artwork artwork = intent.getParcelableExtra(ARTWORK_DETAIL);
-            GlideApp.with(this)
-                    .load(artwork.getThumbnail())
-                    .fallback(R.drawable.placeholder)
-                    .placeholder(R.drawable.placeholder)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(mThumbnail);
-
-            if(artwork.hasTitle()){
-                getSupportActionBar().setTitle(artwork.getTitle());
-                mTitle.setText(artwork.getTitle());
-                toolbar.setTitle(artwork.getTitle());
+            final String id = intent.getStringExtra(ARTWORK_DETAIL);
+            if(id != null) {
+                final ArtworkDetailViewModel mViewmodel = ViewModelProviders.of(this).get(ArtworkDetailViewModel.class);
+                mViewmodel.setArtworkID(id);
+                mViewmodel.getArtwork().observe(this, new Observer<Artwork>() {
+                    @Override
+                    public void onChanged(@Nullable Artwork artwork) {
+                        if(artwork != null) {
+                            setUI(artwork);
+                        }
+                    }
+                });
             }
-
-            if(artwork.hasCategory()){
-                mCategory.setText(artwork.getCategory());
-            }
-
-            if(artwork.hasDate()){
-                mDate.setText(artwork.getDate());
-            }
-
-            if(artwork.isPublished()){
-                mPublished.setText(""+artwork.isPublished());
-            }
-
-            if(artwork.hasWebsite()){
-                mWebsite.setText(artwork.getWebsite());
-            }
-
-            if(artwork.hasRights()){
-                mRights.setText(artwork.getImageRights());
-            }
-
-            if(artwork.isShare()){
-                mButton.setVisibility(View.VISIBLE);
-            }
-
-
-
         }
 
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -117,5 +94,44 @@ public class ArtworkDetail extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setUI(Artwork artwork){
+        GlideApp.with(this)
+                .load(artwork.getThumbnail())
+                .fallback(R.drawable.placeholder)
+                .placeholder(R.drawable.placeholder)
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(mThumbnail);
+
+        if(artwork.hasTitle()){
+            getSupportActionBar().setTitle(artwork.getTitle());
+            mTitle.setText(artwork.getTitle());
+            toolbar.setTitle(artwork.getTitle());
+        }
+
+        if(artwork.hasCategory()){
+            mCategory.setText(artwork.getCategory());
+        }
+
+        if(artwork.hasDate()){
+            mDate.setText(artwork.getDate());
+        }
+
+        if(artwork.isPublished()){
+            mPublished.setText(""+artwork.isPublished());
+        }
+
+        if(artwork.hasWebsite()){
+            mWebsite.setText(artwork.getWebsite());
+        }
+
+        if(artwork.hasRights()){
+            mRights.setText(artwork.getImageRights());
+        }
+
+        if(artwork.isShare()){
+            mButton.setVisibility(View.VISIBLE);
+        }
     }
 }

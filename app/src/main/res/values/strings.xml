@@ -38,6 +38,10 @@
     <string name="show_menu_running_title">Running</string>
     <string name="show_menu_closed_title">Closed</string>
     <string name="show_menu_current_title">Current</string>
+    <string name="widget_artwork_text">New artworks</string>
+    <string name="widget_error_no_data">No artworks loaded yet</string>
+    <string name="notification_default_title">Daily motivation</string>
+    <string name="notification_default_content_text">Check out this artwork!</string>
 
 
 </resources>

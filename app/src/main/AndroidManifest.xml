@@ -49,6 +49,9 @@
             android:name=".services.ArtworkIntent"
             android:exported="false" />
 
+        <service android:name=".services.GridWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
         <receiver android:name=".widget.ArtysWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

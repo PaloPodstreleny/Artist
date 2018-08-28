@@ -23,6 +23,22 @@
         <item name="android:contentDescription">"Lala"</item>
     </style>
 
+    <style name="TextPrimary">
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="WidgetArtTV" parent="TextPrimary">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_margin">@dimen/layout_margin_small</item>
+    </style>
+
+    <style name="WidgetArtListItemTV" parent="TextPrimary">
+        <item name="android:padding">@dimen/inner_padding_small</item>
+    </style>
+
+
 
 
 </resources>
