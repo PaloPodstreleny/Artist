@@ -16,6 +16,7 @@ import com.artapp.podstreleny.palo.artist.network.api_responses.ImportantLink;
 import com.artapp.podstreleny.palo.artist.network.api_responses.Link;
 import com.artapp.podstreleny.palo.artist.network.api_responses.shows.ShowData;
 import com.artapp.podstreleny.palo.artist.network.api_responses.shows.ShowResponse;
+import com.artapp.podstreleny.palo.artist.ui.shows.ShowPeriod;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
     private ArtsyEndpoint endpoint;
     private String token;
     private ShowDao dao;
+    private String filter;
 
     private boolean isLoaded;
 
@@ -39,6 +41,15 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
         this.token = token;
         this.dao = dao;
         this.callback = callback;
+    }
+
+    public ShowBoundryCallback(String token, ShowDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback,String filter) {
+        this.executor = executor;
+        this.endpoint = endpoint;
+        this.token = token;
+        this.dao = dao;
+        this.callback = callback;
+        this.filter = filter;
     }
 
     @Override
@@ -55,7 +66,17 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show>{
             @NonNull
             @Override
             protected Call<ShowResponse> createCall() {
-                return endpoint.getShows(token,PREFETCH_SIZE);
+                if(filter == null) {
+                    return endpoint.getShows(token, PREFETCH_SIZE);
+                }else if(filter.equals(ShowPeriod.CLOSED)) {
+                    return endpoint.getShows(token, PREFETCH_SIZE);
+                }else if(filter.equals(ShowPeriod.RUNNING)){
+                    return endpoint.getShows(token, PREFETCH_SIZE);
+                }else if(filter.equals(ShowPeriod.UPCOMING)){
+                    return endpoint.getShows(token, PREFETCH_SIZE);
+                }else {
+                    throw new IllegalArgumentException("Wrong ShowPeriod defined!");
+                }
             }
 
             @Override

@@ -18,6 +18,7 @@ import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 public class ShowViewModel extends AndroidViewModel {
 
     private ShowRepository mRepository = ShowRepository.getInstance(getApplication());
+    private String type = ShowPeriod.DEFAULT;
 
     private MutableLiveData<Boolean> shouldFetchToken = new MutableLiveData<>();
     private LiveData<Resource<ArtysToken>> token = Transformations.switchMap(shouldFetchToken, new Function<Boolean, LiveData<Resource<ArtysToken>>>() {
@@ -31,7 +32,18 @@ public class ShowViewModel extends AndroidViewModel {
     private LiveData<PagedList<Show>> shows = Transformations.switchMap(tokenChanged, new Function<String, LiveData<PagedList<Show>>>() {
         @Override
         public LiveData<PagedList<Show>> apply(String input) {
-            return mRepository.getShows(input);
+            if(type.equals(ShowPeriod.DEFAULT)){
+                return mRepository.getShows(input);
+            }else if(type.equals(ShowPeriod.UPCOMING)){
+                return mRepository.getFilteredShows(input,type);
+            }else if (type.equals(ShowPeriod.RUNNING)){
+                return mRepository.getFilteredShows(input,type);
+            }else if (type.equals(ShowPeriod.CLOSED)){
+                return mRepository.getFilteredShows(input,type);
+            }else {
+                throw new IllegalArgumentException("Undefined type!");
+            }
+
         }
     });
 
@@ -41,6 +53,10 @@ public class ShowViewModel extends AndroidViewModel {
             return mRepository.getActualStatus();
         }
     });
+
+    public void setFilter(String filter){
+        this.type = filter;
+    }
 
     public ShowViewModel(Application application){
         super(application);

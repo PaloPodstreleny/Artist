@@ -56,8 +56,6 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
     @BindView(R.id.horizontalFragment)
     ProgressBar mHorizontalProgressBar;
 
-    @BindView(R.id.toolbarShadow)
-    Toolbar mToolbar;
 
     private String newToken;
     private TokenUtil mTokenUtil;
@@ -68,10 +66,8 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.show_fragment,container,false);
+        final View view = inflater.inflate(R.layout.artworks_fragment,container,false);
         ButterKnife.bind(this,view);
-        mToolbar.setTitle(R.string.shows_title);
-        setMenuVisibility(true);
         setHasOptionsMenu(true);
         return view;
     }
@@ -223,12 +219,24 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
         switch (item.getItemId()){
             case R.id.show_menu_upcoming:
                 //impelment upcoming
+                mViewModel.setFilter(ShowPeriod.UPCOMING);
+                if(newToken != null){
+                    mViewModel.setToken(newToken);
+                }
                 return true;
             case R.id.show_menu_running:
                 //implement running
+                mViewModel.setFilter(ShowPeriod.RUNNING);
+                if(newToken != null){
+                    mViewModel.setToken(newToken);
+                }
                 return true;
             case R.id.show_menu_closed:
                 //implement closed
+                mViewModel.setFilter(ShowPeriod.CLOSED);
+                if(newToken != null){
+                    mViewModel.setToken(newToken);
+                }
                 return true;
             default:
                 throw new IllegalArgumentException("menuitem id is not recognized!");

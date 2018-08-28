@@ -70,7 +70,10 @@ public interface ArtsyEndpoint {
             @Header("X-Xapp-Token") String token
     );
 
-
+    //TODO check if i can filter show like this
+    Call<ShowResponse> getClosedShows(String token, int prefetchSize);
+    Call<ShowResponse> getRunningShows(String token, int prefetchSize);
+    Call<ShowResponse> getUpcommingShows(String token, int prefetchSize);
 }
 
 

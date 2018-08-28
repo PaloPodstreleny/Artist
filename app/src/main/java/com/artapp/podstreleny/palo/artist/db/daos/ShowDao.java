@@ -16,6 +16,9 @@ public interface ShowDao {
     @Query("SELECT * FROM shows")
     DataSource.Factory<Integer,Show> getShows();
 
+    @Query("SELECT * FROM shows WHERE shows.status = :status")
+    DataSource.Factory<Integer,Show> getFilteredShows(String status);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<Show> data);
 
