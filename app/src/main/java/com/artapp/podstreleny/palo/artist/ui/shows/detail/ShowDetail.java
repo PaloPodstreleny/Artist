@@ -2,7 +2,9 @@ package com.artapp.podstreleny.palo.artist.ui.shows.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,18 +60,29 @@ public class ShowDetail extends AppCompatActivity {
         setContentView(R.layout.activity_show_detail);
         ButterKnife.bind(this);
 
-        mToolbar.setTitle(R.string.detail_show_title);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.detail_show_title);
+        }
+
 
         final Intent intent = getIntent();
         if(intent != null && intent.hasExtra(SHOW_DETAIL)){
             final Show show = intent.getParcelableExtra(SHOW_DETAIL);
 
-            GlideApp.with(this)
-                    .load(show.getThumbnail())
-                    .placeholder(R.drawable.placeholder)
-                    .fallback(R.drawable.placeholder)
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(mShowImageView);
+            if(show.hasThumbnail()){
+                GlideApp.with(this)
+                        .load(show.getThumbnail())
+                        .placeholder(R.drawable.placeholder)
+                        .fallback(R.drawable.placeholder)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(mShowImageView);
+            }else {
+                mShowImageView.setVisibility(View.GONE);
+            }
+
 
             if(show.hasItemTitle()){
                 mShowName.setText(show.getName());
@@ -93,7 +106,7 @@ public class ShowDetail extends AppCompatActivity {
             }
 
             if(show.isGroupShow()){
-                mStatusIV.setVisibility(View.VISIBLE);
+                mSoloGroupIV.setVisibility(View.VISIBLE);
                 mSoloGroupTV.append(getString(R.string.show_detail_group_people));
             }
 
@@ -102,16 +115,23 @@ public class ShowDetail extends AppCompatActivity {
 
             }
 
-
             if(show.hasPressRelease()){
                 mShowPressRelease.setText(show.getPressRelease());
             }
 
 
-
         }
 
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+        }
     }
 }

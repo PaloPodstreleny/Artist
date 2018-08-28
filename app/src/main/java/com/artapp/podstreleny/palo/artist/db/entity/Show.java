@@ -252,4 +252,8 @@ public class Show implements Parcelable,IListItem {
     public String getStartEndDate() {
         return getStartAt().substring(0,10).replace("-","/") +" - " + getEndAt().substring(0,10).replace("-","/");
     }
+
+    public boolean hasThumbnail() {
+        return (getThumbnail() != null && getThumbnail().length() > MINIMUM_SIZE);
+    }
 }
