@@ -1,6 +1,5 @@
 package com.artapp.podstreleny.palo.artist.network;
 
-import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.WorkerThread;
 
@@ -10,12 +9,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public abstract class NetworkResource<RequestType> {
+public abstract class NetworkResourceWorkerThread<RequestType> {
 
     private static final int EMPTY_RESPONSE = 204;
     private static final int UNAUTHORIZED_RESPONSE = 401;
 
-    public NetworkResource(final AppExecutor executor, final NetworkCallback callback, final boolean isFirstLoad) {
+    public NetworkResourceWorkerThread(final AppExecutor executor, final NetworkCallback callback, final boolean isFirstLoad) {
         Call<RequestType> apiResponse = createCall();
         callback.getNetworkStatus(Status.LOADING);
         apiResponse.enqueue(new Callback<RequestType>() {
@@ -66,7 +65,6 @@ public abstract class NetworkResource<RequestType> {
     protected abstract void onFetchFailed();
 
     @NonNull
-    @MainThread
     protected abstract Call<RequestType> createCall();
 
     @WorkerThread

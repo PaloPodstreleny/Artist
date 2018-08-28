@@ -29,22 +29,35 @@
         </activity>
         <activity android:name=".ui.art.artists.detail.ArtistDetail" />
         <activity android:name=".ui.art.genes.detail.GeneDetail" />
-        <activity android:name=".ui.shows.detail.ShowDetail"></activity>
+        <activity android:name=".ui.shows.detail.ShowDetail" />
 
         <service
-            android:exported="false"
-            android:name=".services.NotificationJobService">
+            android:name=".services.NotificationJobService"
+            android:exported="false">
             <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"/>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
             </intent-filter>
         </service>
-
         <service
-            android:exported="false"
-            android:name=".services.ArtworkIntent"/>
+            android:name=".services.ArtworkJobService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".services.ArtworkIntent"
+            android:exported="false" />
 
+        <receiver android:name=".widget.ArtysWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/artys_widget_info" />
+        </receiver>
     </application>
-
-
 
 </manifest>

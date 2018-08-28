@@ -8,4 +8,10 @@
     <dimen name="progress_bar_margin_top">48dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="list_layout_padding">4dp</dimen>
+
+    <!--
+Refer to App Widget Documentation for margin information
+http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
+    -->
+    <dimen name="widget_margin">8dp</dimen>
 </resources>

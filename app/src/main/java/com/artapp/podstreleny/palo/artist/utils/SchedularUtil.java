@@ -76,12 +76,14 @@ public class SchedularUtil {
                 .setReplaceCurrent(true)
                 // retry with exponential backoff
                 .setRetryStrategy(RetryStrategy.DEFAULT_EXPONENTIAL)
-                .setConstraints(
+                //TODO add this constraint after succesfull testing
+//                .setConstraints(
                         // only run on an unmetered network
-                        Constraint.ON_UNMETERED_NETWORK,
+//                        Constraint.ON_UNMETERED_NETWORK,
                         // only run when the device is charging
-                        Constraint.DEVICE_CHARGING
-                ).build();
+//                        Constraint.DEVICE_CHARGING
+                //)
+        .build();
         mDispetcher.schedule(job);
     }
 

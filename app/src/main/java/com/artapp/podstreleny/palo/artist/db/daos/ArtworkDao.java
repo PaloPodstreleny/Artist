@@ -27,10 +27,11 @@ public interface ArtworkDao {
     @Query("SELECT COUNT(*) AS n FROM artworks")
     int getNumberOfRows();
 
-    @Query("SELECT artwork_next_page.nextPage FROM artwork_next_page LIMIT 1")
+    //TODO check if it's correct
+    @Query("SELECT artworks.next_page FROM artworks LIMIT 1")
     String getNextPage();
 
-    @Update(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void updateNextPage(ArtworkNexPage page);
 
 }

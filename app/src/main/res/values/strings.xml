@@ -32,6 +32,8 @@
     <string name="preferences_notification_summary_off">Notifications Off</string>
     <string name="notification_channel_name">Daily inspiration</string>
     <string name="notification_channel_description">Providing daily notification for user</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 
 </resources>

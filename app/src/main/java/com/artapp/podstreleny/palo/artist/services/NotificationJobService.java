@@ -23,6 +23,7 @@ import java.util.Random;
 
 public class NotificationJobService extends JobService {
 
+    //TODO check if udacity is working the same way
     private boolean shouldRetry = true;
 
     @Override

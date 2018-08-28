@@ -8,10 +8,9 @@ import com.firebase.jobdispatcher.JobService;
 
 public class ArtworkJobService extends JobService {
 
-    private static final String ARTWORK_INTENT_SERVICE = "ARTWORK_INTENT_SERVICE";
 
     @Override
-    public boolean onStartJob(JobParameters job) {
+    public boolean onStartJob(final JobParameters job) {
 
         AppExecutor executor = AppExecutor.getInstance();
         final ArtsyDatabase database = ArtsyDatabase.getDatabaseInstance(getApplication());
@@ -21,8 +20,9 @@ public class ArtworkJobService extends JobService {
             public void run() {
                final String nextPage = database.getArtworkDao().getNextPage();
                Intent intent = new Intent(getApplicationContext(),ArtworkIntent.class);
-               intent.putExtra(ARTWORK_INTENT_SERVICE,nextPage);
+               intent.putExtra(ArtworkIntent.ARTWORK_INTENT_SERVICE,nextPage);
                getApplication().startService(intent) ;
+               jobFinished(job,false);
             }
         });
 
@@ -32,7 +32,6 @@ public class ArtworkJobService extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters job) {
-
         return false;
     }
 }
