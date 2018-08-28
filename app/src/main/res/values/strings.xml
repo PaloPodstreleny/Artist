@@ -47,6 +47,8 @@
     <string name="content_description_icon_status_of_show">Icon, status of show</string>
     <string name="content_description_icon_opening_days">Icon, Opening days</string>
     <string name="content_description_icon_recomended_group">Icon, recommended group</string>
+    <string name="content_description_photo_show_detail">Photo detail of show</string>
+    <string name="content_description_photo_gene">Photo of gene</string>
 
 
 </resources>

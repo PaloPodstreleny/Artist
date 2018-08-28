@@ -30,7 +30,9 @@
             app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+            android:contentDescription="@string/content_description_photo_show_detail"
+            />
 
 
         <TextView
@@ -130,7 +132,6 @@
             style="@style/TextPrimary"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/layout_margin_medium"
             android:layout_marginTop="@dimen/layout_margin_medium"
             android:layout_marginStart="@dimen/layout_margin_medium"
             android:layout_marginEnd="@dimen/layout_margin_medium"

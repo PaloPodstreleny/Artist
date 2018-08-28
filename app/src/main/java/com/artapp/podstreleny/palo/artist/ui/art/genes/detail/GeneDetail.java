@@ -6,13 +6,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Gene;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,9 +23,6 @@ public class GeneDetail extends AppCompatActivity {
 
     @BindView(R.id.gene_name_tv)
     TextView mGeneName;
-
-    @BindView(R.id.gene_display_name_tv)
-    TextView mGeneDisplayName;
 
     @BindView(R.id.gene_description_tv)
     TextView mGeneDescription;
@@ -47,7 +44,7 @@ public class GeneDetail extends AppCompatActivity {
         final ActionBar bar = getSupportActionBar();
 
         if (bar != null) {
-           bar.setDisplayHomeAsUpEnabled(true);
+            bar.setDisplayHomeAsUpEnabled(true);
         }
 
 
@@ -61,22 +58,19 @@ public class GeneDetail extends AppCompatActivity {
                         .fallback(R.drawable.placeholder)
                         .placeholder(R.drawable.placeholder)
                         .into(mImageView);
+            }else {
+                mImageView.setVisibility(View.GONE);
             }
 
-            if(gene.hasDisplayName()){
-                mGeneDisplayName.setText(gene.getDisplayName());
-            }
 
             if(gene.hasName()){
                 mGeneName.setText(gene.getName());
-                bar.setTitle(gene.getName());
+                toolbar.setTitle(gene.getName());
             }
 
             if(gene.hasDescription()){
                 mGeneDescription.setText(gene.getDescription());
             }
-
-
 
         }
 
