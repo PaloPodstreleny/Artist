@@ -5,56 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".ui.art.artworks.detail.ArtworkDetail">
-
-
-    <include
-        android:id="@+id/include_toolbar"
-        layout="@layout/toolbar_shadow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/gene_thumbnail_iv"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorGreyBackground"
-        android:padding="@dimen/inner_padding_small"
-        android:scaleType="fitCenter"
-        android:transitionName="@string/transition_photo_detail_main"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
-        android:contentDescription="@string/content_description_photo_gene"
-        />
-
-    <TextView
-        android:id="@+id/gene_name_tv"
-        style="@style/DetailTitle"
-        android:layout_width="0dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gene_thumbnail_iv"
-        tools:text="Heading " />
-
-    <TextView
-        android:id="@+id/gene_description_tv"
-        style="@style/TextPrimary"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_margin_medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gene_name_tv"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        tools:context=".ui.art.artworks.detail.ArtworkDetail">
 
 
-</android.support.constraint.ConstraintLayout>
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/toolbar_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/gene_thumbnail_iv"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorGreyBackground"
+            android:padding="@dimen/inner_padding_small"
+            android:scaleType="fitCenter"
+            android:transitionName="@string/transition_photo_detail_main"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
+            android:contentDescription="@string/content_description_photo_gene"
+            />
+
+        <TextView
+            android:id="@+id/gene_name_tv"
+            style="@style/DetailTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gene_thumbnail_iv"
+            tools:text="Heading " />
+
+        <TextView
+            android:id="@+id/gene_description_tv"
+            style="@style/TextPrimary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/layout_margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gene_name_tv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

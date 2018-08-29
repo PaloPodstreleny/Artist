@@ -5,140 +5,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.art.artworks.detail.ArtworkDetail">
-
-
-    <include
-        android:id="@+id/include_toolbar"
-        layout="@layout/toolbar_shadow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/artwork_image_thumbnail"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/colorGreyBackground"
-        android:contentDescription="@string/content_description_photo_artwork_detail"
-        android:padding="@dimen/inner_padding_small"
-        android:scaleType="fitCenter"
-        android:transitionName="@string/transition_photo_detail_main"
-        app:layout_constraintDimensionRatio="16:9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
-
-    <TextView
-        android:id="@+id/artwork_title"
-        style="@style/DetailTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/artwork_image_thumbnail"
-        tools:text="Heading " />
-
-
-    <GridLayout
-        android:id="@+id/grid_layout"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/grid_layout_margin"
-        android:layout_marginEnd="@dimen/grid_layout_margin"
-        android:layout_marginStart="@dimen/grid_layout_margin"
-        android:columnCount="2"
-        app:layout_constraintTop_toBottomOf="@+id/artwork_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
+        android:layout_height="match_parent"
+        tools:context=".ui.art.artworks.detail.ArtworkDetail">
+
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/toolbar_shadow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/artwork_image_thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorGreyBackground"
+            android:contentDescription="@string/content_description_photo_artwork_detail"
+            android:padding="@dimen/inner_padding_small"
+            android:scaleType="fitCenter"
+            android:transitionName="@string/transition_photo_detail_main"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar" />
 
         <TextView
-            android:id="@+id/category_labels"
-            style="@style/TextPrimaryLabel"
-            android:layout_width="wrap_content"
+            android:id="@+id/artwork_title"
+            style="@style/DetailTitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/artwork_detail_category_label" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/artwork_image_thumbnail"
+            tools:text="Heading " />
 
 
-        <TextView
-            android:id="@+id/artwork_category"
-            style="@style/TextPrimary"
-            android:layout_width="wrap_content"
+        <GridLayout
+            android:id="@+id/grid_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:text="Hello world" />
+            android:layout_marginTop="@dimen/grid_layout_margin"
+            android:layout_marginEnd="@dimen/grid_layout_margin"
+            android:layout_marginStart="@dimen/grid_layout_margin"
+            android:columnCount="2"
+            app:layout_constraintTop_toBottomOf="@+id/artwork_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            >
 
-        <TextView
-            android:id="@+id/date_labels"
-            style="@style/TextPrimaryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/artwork_detail_day_label"
-            tools:text="birthday" />
-
-        <TextView
-            android:id="@+id/artwork_date"
-            style="@style/TextPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            tools:text="2018" />
-
-        <TextView
-            android:id="@+id/published_labels"
-            style="@style/TextPrimaryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/artwork_detail_published_label"
-            tools:text="birthday" />
-
-        <TextView
-            android:id="@+id/artwork_published"
-            style="@style/TextPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/website_labels"
-            style="@style/TextPrimaryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/artwork_detail_website_label"
-            tools:text="birthday" />
-
-        <TextView
-            android:id="@+id/artwork_website"
-            style="@style/TextPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/rights_labels"
-            style="@style/TextPrimaryLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/artwork_detail_rights_label"
-            tools:text="birthday" />
-
-        <TextView
-            android:id="@+id/artwork_rights"
-            style="@style/TextPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/category_labels"
+                style="@style/TextPrimaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artwork_detail_category_label" />
 
 
-    </GridLayout>
+            <TextView
+                android:id="@+id/artwork_category"
+                style="@style/TextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:text="Hello world" />
+
+            <TextView
+                android:id="@+id/date_labels"
+                style="@style/TextPrimaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artwork_detail_day_label"
+                tools:text="birthday" />
+
+            <TextView
+                android:id="@+id/artwork_date"
+                style="@style/TextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:text="2018" />
+
+            <TextView
+                android:id="@+id/published_labels"
+                style="@style/TextPrimaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artwork_detail_published_label"
+                tools:text="birthday" />
+
+            <TextView
+                android:id="@+id/artwork_published"
+                style="@style/TextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/website_labels"
+                style="@style/TextPrimaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artwork_detail_website_label"
+                tools:text="birthday" />
+
+            <TextView
+                android:id="@+id/artwork_website"
+                style="@style/TextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/rights_labels"
+                style="@style/TextPrimaryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/artwork_detail_rights_label"
+                tools:text="birthday" />
+
+            <TextView
+                android:id="@+id/artwork_rights"
+                style="@style/TextPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
 
-</android.support.constraint.ConstraintLayout>
+        </GridLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
 </ScrollView>

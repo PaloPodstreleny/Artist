@@ -22,4 +22,5 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="app_bar_elevation">4dp</dimen>
     <dimen name="icon_size">24dp</dimen>
     <dimen name="grid_layout_margin">12dp</dimen>
+    <dimen name="list_item_text_view_top_padding">48dp</dimen>
 </resources>

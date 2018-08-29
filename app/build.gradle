@@ -58,6 +58,7 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "com.android.support.test:runner:$runner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-accessibility:$espresso_version"
 
     //Pagin library
     implementation "android.arch.paging:runtime:$paging_version"
