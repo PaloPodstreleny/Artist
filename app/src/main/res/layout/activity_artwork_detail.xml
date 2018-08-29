@@ -64,6 +64,7 @@
                 style="@style/TextPrimaryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:visibility="visible"
                 android:text="@string/artwork_detail_category_label" />
 
 
