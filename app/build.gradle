@@ -1,6 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'Artys'
+            keyPassword 'password'
+            storeFile file("$rootDir/keystores.jks")
+            storePassword 'password'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.artapp.podstreleny.palo.artist"
@@ -15,14 +24,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
 
 
 dependencies {
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Support libraries
     implementation "com.android.support:design:$actual_version"
@@ -63,8 +75,11 @@ dependencies {
     //Pagin library
     implementation "android.arch.paging:runtime:$paging_version"
 
-    //Firebase Job dispatcher
-    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
 
-
+    // Firebase Analytics + Performance + Dispatcher
+    implementation "com.google.firebase:firebase-core:$firebase_core_version"
+    implementation "com.google.firebase:firebase-perf:$firebase_perf_version"
+    implementation "com.firebase:firebase-jobdispatcher:$firebase_dispatcher_version"
 }
+apply plugin: 'com.google.gms.google-services'
+

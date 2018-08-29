@@ -7,7 +7,7 @@
     android:theme="@style/ToolbarTheme"
     android:focusable="true"
     android:importantForAccessibility="yes"
-    android:descendantFocusability="beforeDescendants"
+    android:descendantFocusability="afterDescendants"
     xmlns:tools="http://schemas.android.com/tools"
     >
 

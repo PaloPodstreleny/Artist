@@ -30,7 +30,8 @@
         <activity android:name=".ui.art.artists.detail.ArtistDetail" />
         <activity android:name=".ui.art.genes.detail.GeneDetail" />
         <activity android:name=".ui.shows.detail.ShowDetail"
-            android:parentActivityName=".ui.main.MainActivity">
+            android:parentActivityName=".ui.main.MainActivity"
+            >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.main.MainActivity" />

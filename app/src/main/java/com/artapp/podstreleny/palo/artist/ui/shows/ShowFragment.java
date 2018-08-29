@@ -27,6 +27,7 @@ import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.Status;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 import com.artapp.podstreleny.palo.artist.utils.TokenUtil;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,6 +62,7 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
     private SharedPreferences mSharedPreferences;
     private ShowViewModel mViewModel;
     private ShowListAdapter mAdapter;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Nullable
     @Override
@@ -75,9 +77,11 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         final Context context = getContext();
+
         if (context != null) {
             mSharedPreferences = context.getSharedPreferences(getString(R.string.token_file_key), Context.MODE_PRIVATE);
             mTokenUtil = new TokenUtil(context, mSharedPreferences);
+            mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
         }
 
         mAdapter = new ShowListAdapter(this, getActivity());
@@ -219,6 +223,7 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
             case R.id.show_menu_upcoming:
                 //impelment upcoming
                 mViewModel.setFilter(ShowPeriod.UPCOMING);
+                submitToFirebaseConsole(ShowPeriod.UPCOMING);
                 if(newToken != null){
                     mViewModel.setToken(newToken);
                 }
@@ -226,6 +231,7 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
             case R.id.show_menu_running:
                 //implement running
                 mViewModel.setFilter(ShowPeriod.RUNNING);
+                submitToFirebaseConsole(ShowPeriod.RUNNING);
                 if(newToken != null){
                     mViewModel.setToken(newToken);
                 }
@@ -233,12 +239,21 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
             case R.id.show_menu_closed:
                 //implement closed
                 mViewModel.setFilter(ShowPeriod.CLOSED);
+                submitToFirebaseConsole(ShowPeriod.CLOSED);
                 if(newToken != null){
                     mViewModel.setToken(newToken);
                 }
                 return true;
             default:
                 throw new IllegalArgumentException("menu item id is not recognized!");
+        }
+    }
+
+    private void submitToFirebaseConsole(String type) {
+        if(mFirebaseAnalytics != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, type);
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         }
     }
 
