@@ -3,21 +3,31 @@ package com.artapp.podstreleny.palo.artist.ui.art.artworks.detail;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
+import com.artapp.podstreleny.palo.artist.db.entity.Artist;
 import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
+import com.artapp.podstreleny.palo.artist.network.Resource;
+import com.artapp.podstreleny.palo.artist.network.Status;
+import com.artapp.podstreleny.palo.artist.utils.TokenUtil;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -86,6 +96,7 @@ public class ArtworkDetail extends AppCompatActivity {
         if(intent != null && intent.hasExtra(ARTWORK_DETAIL)){
             final String id = intent.getStringExtra(ARTWORK_DETAIL);
             if(id != null) {
+
                 final ArtworkDetailViewModel mViewmodel = ViewModelProviders.of(this).get(ArtworkDetailViewModel.class);
                 mViewmodel.setArtworkID(id);
                 mViewmodel.getArtwork().observe(this, new Observer<Artwork>() {
@@ -97,6 +108,9 @@ public class ArtworkDetail extends AppCompatActivity {
                         }
                     }
                 });
+
+
+
             }
         }
 

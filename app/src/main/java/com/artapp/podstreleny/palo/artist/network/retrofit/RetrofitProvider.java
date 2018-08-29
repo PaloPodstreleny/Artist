@@ -21,10 +21,6 @@ public class RetrofitProvider {
         return sRetrofit.create(data);
     }
 
-    public static <T> T geGenericService(Class<T> data){
-        Class<T> generic = (Class<T>) ((ParameterizedType) data.getGenericSuperclass()).getActualTypeArguments()[0];
-        return sRetrofit.create(generic);
-    }
 
 }
 

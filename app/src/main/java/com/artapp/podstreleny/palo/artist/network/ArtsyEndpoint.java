@@ -1,9 +1,12 @@
 package com.artapp.podstreleny.palo.artist.network;
 
+import android.arch.lifecycle.LiveData;
+
 import com.artapp.podstreleny.palo.artist.network.api_responses.artists.ArtistResponse;
 import com.artapp.podstreleny.palo.artist.network.api_responses.artwork.ArtworkResponse;
 import com.artapp.podstreleny.palo.artist.network.api_responses.genes.GeneResponse;
 import com.artapp.podstreleny.palo.artist.network.api_responses.shows.ShowResponse;
+import com.artapp.podstreleny.palo.artist.network.responses.ApiResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -35,6 +38,15 @@ public interface ArtsyEndpoint {
             @Query("size") int size,
             @Query("artworks") boolean artwork
     );
+
+    @GET("artists")
+    LiveData<ApiResponse<ArtistResponse>> getArtistsByArtwork(
+            @Header("X-Xapp-Token") String token,
+            @Query("id") String id
+    );
+
+
+
 
     @GET
     Call<ArtistResponse> getNextArtistPage(
@@ -77,6 +89,7 @@ public interface ArtsyEndpoint {
             @Url() String string,
             @Header("X-Xapp-Token") String token
     );
+
 }
 
 
