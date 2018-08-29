@@ -1,6 +1,7 @@
 package com.artapp.podstreleny.palo.artist.db.entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "artists_artworks")
@@ -15,6 +16,7 @@ public class ArtistsArtworks {
 
     }
 
+    @Ignore
     public ArtistsArtworks(String artworks, String artists){
         this.artworks = artworks;
         this.artists = artists;
