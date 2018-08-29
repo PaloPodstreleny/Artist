@@ -60,7 +60,7 @@ public class ArtworkIntent extends IntentService {
                 }, false){
                     @Override
                     protected void onFetchFailed() {
-                        Log.v(TAG, "OnItemAtEndLoaded IntentService problem!");
+                        Log.v(TAG, "ArtworkIntent fetch Failed network error!");
                     }
 
                     @NonNull

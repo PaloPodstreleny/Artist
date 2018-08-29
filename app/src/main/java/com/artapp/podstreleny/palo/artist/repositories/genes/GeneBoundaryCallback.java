@@ -20,9 +20,9 @@ import java.util.List;
 
 import retrofit2.Call;
 
-class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
+class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene> {
 
-    private static final String TAG = GeneRepository.class.getSimpleName();
+    private static final String TAG = GeneBoundaryCallback.class.getSimpleName();
     private static final int PREFETCH_SIZE = 50;
     private AppExecutor executor;
     private NetworkCallback callback;
@@ -32,7 +32,7 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
 
     private boolean isLoaded;
 
-    public GeneBoundaryCallback(String token, GeneDao dao, AppExecutor executor, ArtsyEndpoint endpoint,NetworkCallback callback) {
+    public GeneBoundaryCallback(String token, GeneDao dao, AppExecutor executor, ArtsyEndpoint endpoint, NetworkCallback callback) {
         this.executor = executor;
         this.endpoint = endpoint;
         this.token = token;
@@ -42,19 +42,19 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
 
     @Override
     public void onZeroItemsLoaded() {
-        if(isLoaded) return;
+        if (isLoaded) return;
         isLoaded = true;
-        new NetworkResource<GeneResponse>(executor,callback,true){
+        new NetworkResource<GeneResponse>(executor, callback, true) {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"ZeroItemsLoaded problem Gene!");
+                Log.v(TAG, "Gene onZeroItemsLoaded network error!!");
             }
 
             @NonNull
             @Override
             protected Call<GeneResponse> createCall() {
-                return endpoint.getGenes(token,PREFETCH_SIZE);
+                return endpoint.getGenes(token, PREFETCH_SIZE);
             }
 
             @Override
@@ -69,19 +69,19 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
 
     @Override
     public void onItemAtEndLoaded(@NonNull final Gene itemAtEnd) {
-        if(isLoaded) return;
+        if (isLoaded) return;
         isLoaded = true;
-        new NetworkResource<GeneResponse>(executor,callback,false){
+        new NetworkResource<GeneResponse>(executor, callback, false) {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"onItemAtEndLoaded problem Gene !");
+                Log.v(TAG, "Gene onItemAtEndLoaded network error!");
             }
 
             @NonNull
             @Override
             protected Call<GeneResponse> createCall() {
-                return endpoint.getNextGenePage(itemAtEnd.getNextPage(),token);
+                return endpoint.getNextGenePage(itemAtEnd.getNextPage(), token);
             }
 
             @Override
@@ -107,7 +107,7 @@ class GeneBoundaryCallback extends PagedList.BoundaryCallback<Gene>{
                     if (imageURL != null) {
                         gene.setThumbnail(imageURL.getHref());
                     }
-                    if(nextFetch != null) {
+                    if (nextFetch != null) {
                         gene.setNextPage(nextFetch);
                     }
                 }

@@ -55,7 +55,7 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show> {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG, "ZeroItemsLoaded problem Gene!");
+                Log.v(TAG, "Shows onZeroItemsLoaded network error!");
             }
 
             @NonNull
@@ -88,7 +88,7 @@ class ShowBoundryCallback extends PagedList.BoundaryCallback<Show> {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG, "onItemAtEndLoaded problem Gene !");
+                Log.v(TAG, "Show onItemAtEndLoaded network error!");
             }
 
             @NonNull

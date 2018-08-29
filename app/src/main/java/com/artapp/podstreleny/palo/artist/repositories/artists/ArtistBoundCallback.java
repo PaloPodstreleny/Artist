@@ -47,7 +47,7 @@ public class ArtistBoundCallback extends PagedList.BoundaryCallback<Artist> {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"ZeroItemsLoaded problem!");
+                Log.v(TAG,"Artist onZeroItemsLoaded network error!");
             }
 
             @NonNull
@@ -72,7 +72,7 @@ public class ArtistBoundCallback extends PagedList.BoundaryCallback<Artist> {
             @Override
             protected void onFetchFailed() {
                 isLoaded = false;
-                Log.v(TAG,"OnItemAtEndLoaded problem!");
+                Log.v(TAG,"Shows onItemAtEndLoaded network error!");
             }
 
             @NonNull
