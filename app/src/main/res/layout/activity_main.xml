@@ -14,6 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:nextFocusDown="@+id/fragment_fl"
         />
 
     <FrameLayout
@@ -24,10 +25,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/included_toolbar"
+        android:nextFocusUp="@id/toolbarShadow"
         android:elevation="@dimen/app_bar_elevation"
         />
-
-
 
 
     <android.support.design.widget.BottomNavigationView
@@ -40,6 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:nextFocusDown="@id/app_bar_focusable"
         app:menu="@menu/navigation" />
 
 </android.support.constraint.ConstraintLayout>

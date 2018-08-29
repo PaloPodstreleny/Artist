@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_bar_focusable"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/ToolbarTheme">
+    android:theme="@style/ToolbarTheme"
+    android:focusable="true"
+    android:importantForAccessibility="yes"
+    android:descendantFocusability="beforeDescendants"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarShadow"
@@ -12,6 +18,8 @@
         android:background="@color/colorWhite"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textDirection="locale"
+        tools:title="Heading"
         app:titleTextColor="@color/colorGreyPlaceholder"
         >
 

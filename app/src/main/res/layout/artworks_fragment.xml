@@ -40,6 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/error_no_internet_connection"
+        android:textDirection="locale"
         android:visibility="gone"
         tools:visibility="visible"
         />
@@ -51,6 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/errorMessage"
+        android:textDirection="locale"
         android:text="@string/button_retry"
         android:visibility="gone"
         tools:visibility="visible"
@@ -62,6 +64,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textDirection="locale"
         app:layout_constraintTop_toBottomOf="@id/errorMessage"
         android:text="@string/button_refetch"
         android:visibility="gone"

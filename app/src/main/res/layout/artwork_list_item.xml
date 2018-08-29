@@ -32,6 +32,7 @@
         android:paddingEnd="@dimen/inner_padding_small"
         android:paddingStart="@dimen/inner_padding_small"
         android:paddingTop="@dimen/list_item_text_view_top_padding"
+        android:textDirection="locale"
         android:textColor="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="@id/artwork_image"
         app:layout_constraintEnd_toEndOf="@id/artwork_image"
