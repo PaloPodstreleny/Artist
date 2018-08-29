@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.support.v7.widget.Toolbar;
 
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Show;
@@ -239,7 +238,7 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
                 }
                 return true;
             default:
-                throw new IllegalArgumentException("menuitem id is not recognized!");
+                throw new IllegalArgumentException("menu item id is not recognized!");
         }
     }
 

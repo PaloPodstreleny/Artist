@@ -220,14 +220,14 @@ public class Artwork implements Parcelable{
     public boolean hasCategory() {
         return (
                 getCategory() != null &&
-                getCategory().length() > MINIMUN_LENGTH);
+                        getCategory().length() > MINIMUN_LENGTH);
     }
 
     @Ignore
     public boolean hasDate() {
         return (
                 getDate() != null &&
-                getDate().length() > MINIMUN_LENGTH);
+                        getDate().length() > MINIMUN_LENGTH);
     }
 
     @Ignore

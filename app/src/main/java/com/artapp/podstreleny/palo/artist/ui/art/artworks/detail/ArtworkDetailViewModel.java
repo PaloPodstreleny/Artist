@@ -3,7 +3,6 @@ package com.artapp.podstreleny.palo.artist.ui.art.artworks.detail;
 import android.app.Application;
 import android.arch.core.util.Function;
 import android.arch.lifecycle.AndroidViewModel;
-
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Transformations;
@@ -20,7 +19,7 @@ public class ArtworkDetailViewModel extends AndroidViewModel {
     private LiveData<Artwork> artwork = Transformations.switchMap(artworkID, new Function<String, LiveData<Artwork>>() {
         @Override
         public LiveData<Artwork> apply(String input) {
-          return mRepository.getArtwork(input);
+            return mRepository.getArtwork(input);
         }
     });
 

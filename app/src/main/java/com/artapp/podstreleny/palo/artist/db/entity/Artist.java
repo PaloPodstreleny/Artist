@@ -1,7 +1,6 @@
 package com.artapp.podstreleny.palo.artist.db.entity;
 
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;

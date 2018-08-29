@@ -11,7 +11,6 @@ import com.artapp.podstreleny.palo.artist.AppExecutor;
 import com.artapp.podstreleny.palo.artist.TokenFetcher;
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ShowDao;
-import com.artapp.podstreleny.palo.artist.db.entity.Artwork;
 import com.artapp.podstreleny.palo.artist.db.entity.Show;
 import com.artapp.podstreleny.palo.artist.network.ArtsyEndpoint;
 import com.artapp.podstreleny.palo.artist.network.IToken;
@@ -19,7 +18,6 @@ import com.artapp.podstreleny.palo.artist.network.NetworkCallback;
 import com.artapp.podstreleny.palo.artist.network.Resource;
 import com.artapp.podstreleny.palo.artist.network.Status;
 import com.artapp.podstreleny.palo.artist.network.retrofit.RetrofitProvider;
-import com.artapp.podstreleny.palo.artist.ui.shows.ShowPeriod;
 import com.artapp.podstreleny.palo.artist.utils.ArtysToken;
 
 

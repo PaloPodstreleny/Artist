@@ -22,7 +22,7 @@ public class ArtworksViewModel extends AndroidViewModel {
     private LiveData<Resource<ArtysToken>> token = Transformations.switchMap(shouldFetchToken, new Function<Boolean, LiveData<Resource<ArtysToken>>>() {
         @Override
         public LiveData<Resource<ArtysToken>> apply(Boolean input) {
-           return mRepository.fetchToken();
+            return mRepository.fetchToken();
         }
     });
 

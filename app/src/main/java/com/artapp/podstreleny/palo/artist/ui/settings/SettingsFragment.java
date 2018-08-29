@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.artapp.podstreleny.palo.artist.R;
-import com.artapp.podstreleny.palo.artist.utils.NotificationUtil;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 

@@ -1,4 +1,5 @@
 package com.artapp.podstreleny.palo.artist.widget;
+
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
@@ -6,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.TaskStackBuilder;
 import android.widget.RemoteViews;
+
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.services.GridWidgetService;
 import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;

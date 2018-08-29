@@ -47,7 +47,7 @@
             app:layout_constraintTop_toBottomOf="@+id/artist_image_thumbnail"
             tools:text="Heading " />
 
-        
+
 
         <GridLayout
             android:id="@+id/grid_layout"

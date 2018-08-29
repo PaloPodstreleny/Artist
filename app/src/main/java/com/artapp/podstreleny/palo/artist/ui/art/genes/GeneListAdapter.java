@@ -20,7 +20,6 @@ import android.widget.TextView;
 import com.artapp.podstreleny.palo.artist.GlideApp;
 import com.artapp.podstreleny.palo.artist.R;
 import com.artapp.podstreleny.palo.artist.db.entity.Gene;
-import com.artapp.podstreleny.palo.artist.ui.art.artworks.detail.ArtworkDetail;
 import com.artapp.podstreleny.palo.artist.ui.art.genes.detail.GeneDetail;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 

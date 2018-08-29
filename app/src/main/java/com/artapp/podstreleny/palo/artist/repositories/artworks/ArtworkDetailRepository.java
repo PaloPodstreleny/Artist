@@ -2,7 +2,6 @@ package com.artapp.podstreleny.palo.artist.repositories.artworks;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
-import android.content.Context;
 
 import com.artapp.podstreleny.palo.artist.db.ArtsyDatabase;
 import com.artapp.podstreleny.palo.artist.db.daos.ArtworkDao;
@@ -30,6 +29,6 @@ public class ArtworkDetailRepository {
 
 
     public LiveData<Artwork> getArtwork(String input) {
-       return mDao.getArtwork(input);
+        return mDao.getArtwork(input);
     }
 }
