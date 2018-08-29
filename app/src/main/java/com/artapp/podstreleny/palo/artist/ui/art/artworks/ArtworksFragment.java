@@ -89,6 +89,7 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
             public void onChanged(@Nullable PagedList<Artwork> artworks) {
                 if(artworks != null){
                     mAdapter.submitList(artworks);
+                    hideErrorViews();
                 }else {
                     mProgressBar.setVisibility(View.VISIBLE);
                     mRecyclerView.setVisibility(View.GONE);
@@ -219,5 +220,9 @@ public class ArtworksFragment extends Fragment implements SharedPreferences.OnSh
             }
         }
 
+    }
+    private void hideErrorViews() {
+        mButtonRefetch.setVisibility(View.GONE);
+        mErrorMessage.setVisibility(View.GONE);
     }
 }

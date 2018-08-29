@@ -87,6 +87,7 @@ public class GenesFragment extends Fragment implements SharedPreferences.OnShare
                 if (genes != null) {
                     mAdapter.submitList(genes);
                     mRecyclerView.setVisibility(View.VISIBLE);
+                    hideErrorViews();
                 }
 
             }
@@ -212,6 +213,11 @@ public class GenesFragment extends Fragment implements SharedPreferences.OnShare
             }
         }
 
+    }
+
+    private void hideErrorViews() {
+        mButtonRefetch.setVisibility(View.GONE);
+        mErrorMessage.setVisibility(View.GONE);
     }
 
 

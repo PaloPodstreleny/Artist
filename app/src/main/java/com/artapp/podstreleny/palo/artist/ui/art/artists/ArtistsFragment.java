@@ -84,6 +84,7 @@ public class ArtistsFragment extends Fragment implements SharedPreferences.OnSha
             @Override
             public void onChanged(@Nullable PagedList<Artist> artworks) {
                 if(artworks != null){
+                    hideErrorViews();
                     mAdapter.submitList(artworks);
                 }else {
                     mProgressBar.setVisibility(View.VISIBLE);
@@ -185,6 +186,11 @@ public class ArtistsFragment extends Fragment implements SharedPreferences.OnSha
 
 
 
+    }
+
+    private void hideErrorViews() {
+        mButtonRefetch.setVisibility(View.GONE);
+        mErrorMessage.setVisibility(View.GONE);
     }
 
     @Override

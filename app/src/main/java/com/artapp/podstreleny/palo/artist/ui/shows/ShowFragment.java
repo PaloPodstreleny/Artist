@@ -96,6 +96,7 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
                 if (shows != null) {
                     mAdapter.submitList(shows);
                     mRecyclerView.setVisibility(View.VISIBLE);
+                    hideErrorViews();
                 }
 
             }
@@ -255,6 +256,11 @@ public class ShowFragment extends Fragment implements SharedPreferences.OnShared
             bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, type);
             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         }
+    }
+
+    private void hideErrorViews() {
+        mButtonRefetch.setVisibility(View.GONE);
+        mErrorMessage.setVisibility(View.GONE);
     }
 
     @Override
