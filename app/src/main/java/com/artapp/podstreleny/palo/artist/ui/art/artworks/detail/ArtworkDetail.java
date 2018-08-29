@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -92,6 +93,7 @@ public class ArtworkDetail extends AppCompatActivity {
                     public void onChanged(@Nullable Artwork artwork) {
                         if(artwork != null) {
                             setUI(artwork);
+                            mViewmodel.getArtwork().removeObserver(this);
                         }
                     }
                 });
@@ -146,5 +148,16 @@ public class ArtworkDetail extends AppCompatActivity {
             labelRigths.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.art.artworks.detail.ArtworkDetail">
+
+
+    <ImageView
+        android:id="@+id/artist_image_thumbnail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorGreyBackground"
+        android:contentDescription="@string/content_description_photo_artwork_detail"
+        android:padding="@dimen/inner_padding_small"
+        android:scaleType="fitCenter"
+        android:transitionName="@string/transition_photo_detail_main"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/artist_name_tv"
+        style="@style/DetailTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textDirection="locale"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artist_image_thumbnail"
+        tools:text="Heading " />
+
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/grid_layout_margin"
+        android:layout_marginStart="@dimen/grid_layout_margin"
+        android:layout_marginTop="@dimen/grid_layout_margin"
+        android:columnCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artist_name_tv">
+
+        <TextView
+            android:id="@+id/gender_label"
+            android:labelFor="@+id/artist_gender_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_gender"
+            tools:text="Hello world"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/artist_gender_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:text="Hello world"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/birthday_label"
+            android:labelFor="@+id/artist_birhday_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_birthday"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artist_birhday_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:text="2018" />
+
+        <TextView
+            android:id="@+id/death_day_label"
+            android:labelFor="@+id/artist_deathday_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_death_day"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artist_deathday_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/location_label"
+            android:labelFor="@+id/artist_location_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_location"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artist_location_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/nationality_label"
+            android:labelFor="@+id/artist_nationality_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_nationality"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artist_nationality_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/hometown_label"
+            android:labelFor="@+id/artist_hometown_tv"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artist_detail_hometown"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artist_hometown_tv"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/artist_biography_tv"
+        style="@style/TextPrimary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/layout_margin_medium"
+        android:layout_marginStart="@dimen/layout_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grid_layout"
+        tools:text="Hello from the other side" />
+</android.support.constraint.ConstraintLayout>

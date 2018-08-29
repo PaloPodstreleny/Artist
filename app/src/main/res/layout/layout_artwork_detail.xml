@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.art.artworks.detail.ArtworkDetail">
+
+
+    <ImageView
+        android:id="@+id/artwork_image_thumbnail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorGreyBackground"
+        android:contentDescription="@string/content_description_photo_artwork_detail"
+        android:padding="@dimen/inner_padding_small"
+        android:scaleType="fitCenter"
+        android:transitionName="@string/transition_photo_detail_main"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/artwork_title"
+        style="@style/DetailTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/artwork_image_thumbnail"
+        tools:text="Heading " />
+
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/grid_layout_margin"
+        android:layout_marginEnd="@dimen/grid_layout_margin"
+        android:layout_marginStart="@dimen/grid_layout_margin"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/artwork_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/category_labels"
+            android:labelFor="@+id/artwork_category"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:text="@string/artwork_detail_category_label" />
+
+
+        <TextView
+            android:id="@+id/artwork_category"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:text="Hello world" />
+
+        <TextView
+            android:id="@+id/date_labels"
+            android:labelFor="@+id/artwork_date"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artwork_detail_day_label"
+            tools:visibility="visible"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artwork_date"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="2018 is  sldf sld fsld fsl fsl fdksld fs ksl fsdf lks dflksd flksd flksd flksa dfalk sf sfk sfk sfk skd fsk dfsdk f" />
+
+        <TextView
+            android:id="@+id/published_labels"
+            android:labelFor="@+id/artwork_published"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artwork_detail_published_label"
+            tools:visibility="visible"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artwork_published"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/website_labels"
+            android:labelFor="@+id/artwork_website"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artwork_detail_website_label"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artwork_website"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/rights_labels"
+            android:labelFor="@+id/artwork_rights"
+            style="@style/TextPrimaryLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/artwork_detail_rights_label"
+            tools:text="birthday" />
+
+        <TextView
+            android:id="@+id/artwork_rights"
+            style="@style/TextPrimaryGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+
+    </GridLayout>
+
+
+</android.support.constraint.ConstraintLayout>

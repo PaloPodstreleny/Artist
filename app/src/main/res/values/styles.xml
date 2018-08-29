@@ -27,6 +27,11 @@
         <item name="android:textDirection">locale</item>
     </style>
 
+    <style name="TextPrimaryGrid" parent="TextPrimary">
+        <item name="android:layout_marginEnd">@dimen/grid_layout_padding_text</item>
+        <item name="android:layout_marginRight">@dimen/grid_layout_padding_text</item>
+    </style>
+
     <style name="TextSecodary">
         <item name="android:textColor">@color/colorGreyPlaceholder</item>
         <item name="android:textSize">12sp</item>
