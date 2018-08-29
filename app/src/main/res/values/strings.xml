@@ -63,4 +63,7 @@
     <string name="published_true">Yes</string>
 
 
+    <string name="filter_content_description">Filter shows</string>
+
+
 </resources>

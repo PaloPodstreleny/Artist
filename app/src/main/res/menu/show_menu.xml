@@ -7,6 +7,7 @@
         android:title="@string/show_menu_upcoming_title"
         app:showAsAction="never"
         android:orderInCategory="0"
+        android:contentDescription="@string/show_menu_upcoming_title"
         />
 
     <item
@@ -14,6 +15,7 @@
         android:title="@string/show_menu_running_title"
         android:orderInCategory="1"
         app:showAsAction="never"
+        android:contentDescription="@string/show_menu_running_title"
         />
 
 
@@ -22,6 +24,7 @@
         android:title="@string/show_menu_closed_title"
         android:orderInCategory="1"
         app:showAsAction="never"
+        android:contentDescription="@string/show_menu_closed_title"
         />
 
 

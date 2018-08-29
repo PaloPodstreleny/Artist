@@ -11,8 +11,6 @@
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
-        <item name="android:fontFamily">serif</item>
-        <item name="android:gravity">center</item>
         <item name="android:textColor">@color/colorGreyPlaceholder</item>
     </style>
 
@@ -20,7 +18,7 @@
     <style name="FilterOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_filter</item>
         <item name="android:background">?android:attr/actionBarItemBackground</item>
-        <item name="android:contentDescription">"Lala"</item>
+        <item name="android:contentDescription">@string/filter_content_description</item>
     </style>
 
     <style name="TextPrimary">
@@ -30,7 +28,7 @@
 
     <style name="TextSecodary">
         <item name="android:textColor">@color/colorGreyPlaceholder</item>
-        <item name="android:textSize">12dp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="TextPrimaryLabel" parent="TextPrimary">
@@ -51,16 +49,15 @@
 
 
     <style name="Heading">
-        <item name="android:textSize">24dp</item>
-        <item name="android:fontFamily">sans-serif-bold</item>
+        <item name="android:textSize">24sp</item>
     </style>
     <style name="DetailTitle" parent="Heading">
-        <item name="android:layout_marginEnd">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">16dp</item>
-        <item name="android:layout_marginTop">16dp</item>
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin_medium</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin_medium</item>
+        <item name="android:layout_marginLeft">@dimen/layout_margin_medium</item>
+        <item name="android:layout_marginRight">@dimen/layout_margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/layout_margin_medium</item>
+        <item name="android:layout_marginBottom">@dimen/layout_margin_small</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 

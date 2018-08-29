@@ -15,6 +15,7 @@ public class Schedular {
     private static final String NOTIFICATION_JOB = "notification_job";
     private static final String ARTWORK_JOB = "artwork_job";
     private static final int ONE_DAY = 60*60*24;
+    private static final int WINDOW_START = 0;
 
     private static Schedular INSTANCE;
     private FirebaseJobDispatcher mDispetcher;
@@ -49,7 +50,7 @@ public class Schedular {
                 // don't persist past a device reboot
                 .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
                 // start between 0 and 60 seconds from now
-                .setTrigger(Trigger.executionWindow(ONE_DAY/3, ONE_DAY))
+                .setTrigger(Trigger.executionWindow(WINDOW_START, ONE_DAY))
                 // don't overwrite an existing job with the same tag
                 .setReplaceCurrent(true)
                 // retry with exponential backoff
@@ -70,7 +71,7 @@ public class Schedular {
                 // don't persist past a device reboot
                 .setLifetime(Lifetime.UNTIL_NEXT_BOOT)
                 // start between 0 and 60 seconds from now
-                .setTrigger(Trigger.executionWindow(ONE_DAY/3, ONE_DAY))
+                .setTrigger(Trigger.executionWindow(WINDOW_START, ONE_DAY))
                 // don't overwrite an existing job with the same tag
                 .setReplaceCurrent(true)
                 // retry with exponential backoff
