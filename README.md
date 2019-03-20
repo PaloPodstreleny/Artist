@@ -36,7 +36,7 @@ Artist is the right place for all art lovers and people who try to find inspirat
 	* Android architecture components: 
 		* Room: 1.1.1:  local data persistence
 		* Live Data: 1.1.1
-* ViewModel: 1.1.1 
+		* ViewModel: 1.1.1 
 * Support design library: 27.1.1
 * RecyclerView: 27.1.1
 * ButterKnife: 8.8.1
