@@ -75,10 +75,7 @@ dependencies {
     //Pagin library
     implementation "android.arch.paging:runtime:$paging_version"
 
-
     // Firebase Analytics + Performance + Dispatcher
-    implementation "com.google.firebase:firebase-core:$firebase_core_version"
-    implementation "com.google.firebase:firebase-perf:$firebase_perf_version"
     implementation "com.firebase:firebase-jobdispatcher:$firebase_dispatcher_version"
 }
 apply plugin: 'com.google.gms.google-services'
